@@ -8,6 +8,11 @@
 
 import UIKit
 import CoreData
+import GoogleMaps
+import GooglePlaces
+
+let GOOGLE_PLACE_APP_KEY = "AIzaSyAT6eDz2Gkih7dnfiAd13JmSslJVHaADzg"
+let KAKAO_SECRET_KEY = "o9COFvGmvUmUF3xkXXiIDce3hxtyYxH9"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
         
+        // Network Start
+        PTNetworkManager.sharedInstance.start()
+        
+        // Google Places API
+        self.didFinishLaunchingWithOptionForGoogle()
+        
+        // Kakao
+        self.didFinishLaunchingWithOptionForKakao()
+        
         return true
     }
 
@@ -27,16 +41,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        KOSession.handleDidBecomeActive()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        KOSession.handleDidBecomeActive()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        self.saveContext()
+        PTNetworkManager.sharedInstance.stop()
+        PTCoredataManager.saveContext()
     }
 
     
@@ -100,3 +117,21 @@ extension AppDelegate {
     }
 }
 
+extension AppDelegate {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if KOSession.isKakaoAccountLoginCallback(url) {
+            return KOSession.handleOpen(url)
+        }
+        
+        return false
+    }
+    
+    func didFinishLaunchingWithOptionForKakao() {
+        KOSession.shared().clientSecret = KAKAO_SECRET_KEY
+        KOSession.shared().isAutomaticPeriodicRefresh = true
+    }
+    func didFinishLaunchingWithOptionForGoogle() {
+        GMSServices.provideAPIKey(GOOGLE_PLACE_APP_KEY)
+        GMSPlacesClient.provideAPIKey(GOOGLE_PLACE_APP_KEY)
+    }
+}
