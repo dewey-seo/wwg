@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PTXibViewProtocol {
+    func setup()
+}
+
 @IBDesignable
 class PTXibView: UIView {
     @IBOutlet weak var view: UIView!

@@ -9,10 +9,9 @@
 import UIKit
 import Alamofire
 
-let GOOGLE_REST_API_KEY = "AIzaSyDu6-P91kjxzpS8pho71U0bMbH65F2nQI4"
 let TEST_API_HOST = "http://127.0.0.1:8000"
 let GOOLE_MAP_HOST = "https://maps.googleapis.com/maps/api"
-let KAKAO_REST_API_APPKEY = "KakaoAK 4769116543076a78f91dfb82591c41ba"
+let KAKAO_REST_API_APPKEY = "KakaoAK ab6bd6892062c5907d07bf9859247295"
 
 class PTApiRequest: PTWebRequest {
     static public func request() -> PTApiRequest {
@@ -86,7 +85,7 @@ extension PTApiRequest {
         self.addParameter(key: "location", value: "\(place.latitude),\(place.longitude)")
         self.addParameter(key: "radius", value: "20")
         self.addParameter(key: "keyword", value: place.name)
-        self.addParameter(key: "key", value: GOOGLE_REST_API_KEY)
+        self.addParameter(key: "key", value: GOOGLE_API_KEY)
         
         self.deliver(method: .get)
         

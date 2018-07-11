@@ -187,15 +187,12 @@
 		5828B7C620F49FBB005A736E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5828B7E420F4AB70005A736E /* ApiResponseModel */,
 				5828B7E520F4AB70005A736E /* MainTabViewController */,
 				5828B7F320F4AB71005A736E /* Managers */,
 				5828B7EE20F4AB70005A736E /* Models */,
 				5828B7DC20F4AB70005A736E /* Network */,
 				5828B7D520F4AB70005A736E /* Popups */,
 				5828B7CD20F4AB70005A736E /* Utility */,
-				5828B7E320F4AB70005A736E /* ViewControllers */,
-				5828B7CC20F4AB70005A736E /* Views */,
 				5828B7C720F49FBB005A736E /* RootViewController */,
 			);
 			path = Source;
@@ -212,13 +209,6 @@
 				5828B82420F4AB7B005A736E /* PTMainViewController.xib */,
 			);
 			path = RootViewController;
-			sourceTree = "<group>";
-		};
-		5828B7CC20F4AB70005A736E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5828B7CD20F4AB70005A736E /* Utility */ = {
@@ -258,41 +248,27 @@
 		5828B7DC20F4AB70005A736E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5828B7DD20F4AB70005A736E /* PTSessionManager.swift */,
 				5828B7DE20F4AB70005A736E /* PTApiRequest.swift */,
+				5828B7E220F4AB70005A736E /* PTWebRequest.swift */,
+				5828B7DD20F4AB70005A736E /* PTSessionManager.swift */,
 				5828B7DF20F4AB70005A736E /* PTApiResponse.swift */,
 				5828B7E020F4AB70005A736E /* PTWebDownloader.swift */,
 				5828B7E120F4AB70005A736E /* PTApiObserver.swift */,
-				5828B7E220F4AB70005A736E /* PTWebRequest.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		5828B7E320F4AB70005A736E /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		5828B7E420F4AB70005A736E /* ApiResponseModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ApiResponseModel;
 			sourceTree = "<group>";
 		};
 		5828B7E520F4AB70005A736E /* MainTabViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5828B7E920F4AB70005A736E /* PTRecommendViewController.swift */,
 				5828B7E620F4AB70005A736E /* PTRecommendViewController.xib */,
 				5828B7E720F4AB70005A736E /* PTSettingViewController.swift */,
-				5828B7E820F4AB70005A736E /* PTFeedViewController.swift */,
-				5828B7E920F4AB70005A736E /* PTRecommendViewController.swift */,
 				5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */,
+				5828B7E820F4AB70005A736E /* PTFeedViewController.swift */,
 				5828B7EB20F4AB70005A736E /* PTFeedViewController.xib */,
-				5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */,
 				5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */,
+				5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */,
 			);
 			path = MainTabViewController;
 			sourceTree = "<group>";
@@ -311,6 +287,7 @@
 		5828B7F320F4AB71005A736E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5828B7FB20F4AB71005A736E /* PTLoginManager.swift */,
 				5828B7F420F4AB71005A736E /* PTAuthManager.swift */,
 				5828B7F520F4AB71005A736E /* PTLocationManager.swift */,
 				5828B7F620F4AB71005A736E /* PTCoredataManager.swift */,
@@ -318,7 +295,6 @@
 				5828B7F820F4AB71005A736E /* PTDBManager.swift */,
 				5828B7F920F4AB71005A736E /* PTNetworkManager.swift */,
 				5828B7FA20F4AB71005A736E /* PTKeychainManager.swift */,
-				5828B7FB20F4AB71005A736E /* PTLoginManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

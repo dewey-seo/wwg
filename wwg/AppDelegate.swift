@@ -11,8 +11,8 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
-let GOOGLE_PLACE_APP_KEY = "AIzaSyAT6eDz2Gkih7dnfiAd13JmSslJVHaADzg"
-let KAKAO_SECRET_KEY = "o9COFvGmvUmUF3xkXXiIDce3hxtyYxH9"
+let GOOGLE_API_KEY = "AIzaSyCROCajPeG43OjPpFu5w936kNZuRtIXFc4"
+let KAKAO_SECRET_KEY = "zQMMc5TQIVPNuVgY2ycHQyvjTiU0VmaG"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -131,7 +131,7 @@ extension AppDelegate {
         KOSession.shared().isAutomaticPeriodicRefresh = true
     }
     func didFinishLaunchingWithOptionForGoogle() {
-        GMSServices.provideAPIKey(GOOGLE_PLACE_APP_KEY)
-        GMSPlacesClient.provideAPIKey(GOOGLE_PLACE_APP_KEY)
+        GMSServices.provideAPIKey(GOOGLE_API_KEY)
+        GMSPlacesClient.provideAPIKey(GOOGLE_API_KEY)
     }
 }
