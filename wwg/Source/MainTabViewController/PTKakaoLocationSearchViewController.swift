@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import RealmSwift
 
 class PTKakaoLocationSearchViewController: UIViewController {
@@ -24,13 +23,40 @@ class PTKakaoLocationSearchViewController: UIViewController {
     }
     
     @IBAction func searchAction(_ sender: Any) {
-        if let searchString = searchTextField.text, searchString.count != 0 {
-            PTApiRequest.request().kakaoLocationSearch(search: searchString).observeCompletion { (response) in
-                if let json = response.jsonResult, let documents = json["documents"] as? [[String: Any]] {
-                    self.searchResult = PTPlace.createPlaces(placeInfos: documents)
-                    self.tableView.reloadData()
+        if let inputString = searchTextField.text, inputString.count != 0 {
+            self.keywordSearch(inputString) { (found) in
+                if found != true {
+                    self.addressSearch(inputString)
                 }
             }
+        }
+        
+        if let searchString = searchTextField.text, searchString.count != 0 {
+            
+        }
+    }
+    
+    func keywordSearch(_ searchString: String, completion: @escaping (Bool) -> Void) {
+        PTApiRequest.request().placeKeywordSearchForKakao(search: searchString).observeCompletion { (response) in
+            if let json = response.jsonResult, let documents = json["documents"] as? [[String: Any]], documents.count > 0 {
+                self.searchResult = PTPlace.createPlaces(placeInfos: documents)
+                self.tableView.reloadData()
+                
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    func addressSearch(_ searchString: String) {
+        PTApiRequest.request().placeAddressSearchForKakao(search: searchString).observeCompletion { (response) in
+            if let json = response.jsonResult, let documents = json["documents"] as? [[String: Any]], documents.count > 0 {
+                self.searchResult = PTPlace.createPlaces(placeInfos: documents)
+            } else {
+                self.searchResult = List<PTPlace>()
+            }
+            self.tableView.reloadData()
         }
     }
 }

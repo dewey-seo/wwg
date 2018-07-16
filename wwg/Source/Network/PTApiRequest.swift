@@ -36,8 +36,21 @@ extension PTApiRequest {
         return self
     }
     
-    public func kakaoLocationSearch(search: String) -> Self{
+    func placeKeywordSearchForKakao(search: String) -> Self{
+       
         self.url = "https://dapi.kakao.com/v2/local/search/keyword.json"
+        self.setKakaoAuthorization(true)
+        
+        self.addParameter(key: "query", value: search)
+        
+        self.encoding = URLEncoding.default
+        self.deliver(method: .get)
+        
+        return self
+    }
+    
+    func placeAddressSearchForKakao(search: String) -> Self {
+        self.url = "https://dapi.kakao.com//v2/local/search/address.json"
         self.setKakaoAuthorization(true)
         
         self.addParameter(key: "query", value: search)

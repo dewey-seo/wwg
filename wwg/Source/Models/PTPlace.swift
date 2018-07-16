@@ -12,6 +12,7 @@ import CoreLocation
 
 class PTPlace: PTModel {
     
+    // Dynamic
     @objc dynamic var name: String = ""
     @objc dynamic var address: String = ""
     @objc dynamic var roadAddress: String = ""
@@ -23,19 +24,26 @@ class PTPlace: PTModel {
     @objc dynamic var latitude: Double = 0.0 // 위도
     @objc dynamic var longitude: Double = 0.0 // 경도
     
-    //
+    let favoriteUsers = LinkingObjects(fromType: PTUser.self, property: "favoritePlaces")
+    let significantUsers = LinkingObjects(fromType: PTUser.self, property: "significantPlaces")
+    
+    // instantv
     var distance: Double?
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    let users = LinkingObjects(fromType: PTUser.self, property: "places")
-    
     static func createPlace(placeInfo: [String: Any]) -> PTPlace? {
-
         let place = PTPlace()
-        if let id = placeInfo["id"] as? String, let name = placeInfo["place_name"] as? String, let longitude = (placeInfo["x"] as? NSString)?.doubleValue, let latitue = (placeInfo["y"] as? NSString)?.doubleValue {
-            place.id = id
+        if let name = (placeInfo["place_name"] as? String ?? placeInfo["address_name"] as? String), let longitude = (placeInfo["x"] as? NSString)?.doubleValue, let latitue = (placeInfo["y"] as? NSString)?.doubleValue {
+            
+            if let id = placeInfo["id"] as? String {
+                place.id = id
+            } else {
+                place.id = NSUUID().uuidString
+                place.isCustomId = true
+            }
+            
             place.name = name
             place.latitude = latitue
             place.longitude = longitude
@@ -44,19 +52,6 @@ class PTPlace: PTModel {
             if let webUrl = placeInfo["web_url"] as? String { place.webUrl = webUrl }
             if let phone = placeInfo["phone"] as? String { place.phone = phone }
 
-            PTPlace.save([place])
-            
-            return place
-        } else if let id = placeInfo["id"] as? String, let name = placeInfo["name"] as? String, let longitude = placeInfo["longitude"] as? Double, let latitue = placeInfo["latitude"] as? Double {
-            place.id = id
-            place.name = name
-            place.latitude = latitue
-            place.longitude = longitude
-            
-            if let placeUrl = placeInfo["place_url"] as? String { place.placeUrl = placeUrl }
-            if let webUrl = placeInfo["webUrl"] as? String { place.webUrl = webUrl }
-            if let phone = placeInfo["phone"] as? String { place.phone = phone }
-            
             PTPlace.save([place])
             
             return place

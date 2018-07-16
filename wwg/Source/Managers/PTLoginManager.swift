@@ -59,7 +59,9 @@ extension PTLoginManager {
             if error == nil {
                 let token = KOSession.shared().token.accessToken
                 debugPrint("token: %@", token)
-                
+                debugPrint("success login")
+                self.login(.kakao, completion: completion)
+                /*
                 PTApiRequest.request().kakaoLogin(token: token).observeCompletion { (response) in
                     if response.isSuccess {
                         debugPrint("success login")
@@ -71,7 +73,7 @@ extension PTLoginManager {
                         }
                     }
                 }
-                return
+                 */
             } else {
                 debugPrint("failed kakao login")
                 if let block = completion {

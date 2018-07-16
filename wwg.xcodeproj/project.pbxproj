@@ -31,16 +31,15 @@
 		5828B80B20F4AB71005A736E /* PTWebDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E020F4AB70005A736E /* PTWebDownloader.swift */; };
 		5828B80C20F4AB71005A736E /* PTApiObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E120F4AB70005A736E /* PTApiObserver.swift */; };
 		5828B80D20F4AB71005A736E /* PTWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E220F4AB70005A736E /* PTWebRequest.swift */; };
-		5828B80E20F4AB71005A736E /* PTRecommendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7E620F4AB70005A736E /* PTRecommendViewController.xib */; };
+		5828B80E20F4AB71005A736E /* PTRecommendTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */; };
 		5828B80F20F4AB71005A736E /* PTSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E720F4AB70005A736E /* PTSettingViewController.swift */; };
-		5828B81020F4AB71005A736E /* PTFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E820F4AB70005A736E /* PTFeedViewController.swift */; };
-		5828B81120F4AB71005A736E /* PTRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E920F4AB70005A736E /* PTRecommendViewController.swift */; };
+		5828B81020F4AB71005A736E /* PTFeedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */; };
+		5828B81120F4AB71005A736E /* PTRecommendTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */; };
 		5828B81220F4AB71005A736E /* PTSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */; };
-		5828B81320F4AB71005A736E /* PTFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EB20F4AB70005A736E /* PTFeedViewController.xib */; };
+		5828B81320F4AB71005A736E /* PTFeedTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */; };
 		5828B81420F4AB71005A736E /* PTKakaoLocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */; };
 		5828B81520F4AB71005A736E /* PTKakaoLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */; };
 		5828B81620F4AB71005A736E /* PTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7EF20F4AB70005A736E /* PTModel.swift */; };
-		5828B81720F4AB71005A736E /* PTPOItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7F020F4AB70005A736E /* PTPOItem.swift */; };
 		5828B81820F4AB71005A736E /* PTPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7F120F4AB70005A736E /* PTPlace.swift */; };
 		5828B81920F4AB71005A736E /* PTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7F220F4AB70005A736E /* PTUser.swift */; };
 		5828B81A20F4AB71005A736E /* PTAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7F420F4AB71005A736E /* PTAuthManager.swift */; };
@@ -57,6 +56,16 @@
 		5828B82920F4AB7B005A736E /* PTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B82520F4AB7B005A736E /* PTLoginViewController.xib */; };
 		5828B82E20F4AD0E005A736E /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5828B82D20F4AD0D005A736E /* KakaoOpenSDK.framework */; };
 		5828B83020F4ADCD005A736E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5828B82F20F4ADCD005A736E /* MapKit.framework */; };
+		586CAF1920F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */; };
+		586CAF1A20F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */; };
+		586CAF1D20FC74FD000166B1 /* PTPlaceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF1B20FC74FD000166B1 /* PTPlaceSearchViewController.swift */; };
+		586CAF1E20FC74FD000166B1 /* PTPlaceSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */; };
+		586CAF2120FC9804000166B1 /* KakaoNavi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586CAF2020FC9804000166B1 /* KakaoNavi.framework */; };
+		586CAF2320FC99DC000166B1 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586CAF2220FC99DB000166B1 /* KakaoCommon.framework */; };
+		58940A4F20F717BC0006F9DA /* PTFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A4E20F717BC0006F9DA /* PTFeed.swift */; };
+		58940A5420F727BE0006F9DA /* PTFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */; };
+		58940A5520F727BE0006F9DA /* PTFeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */; };
+		58940A5920F736580006F9DA /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5820F736580006F9DA /* icons.xcassets */; };
 		93C848BCDBF49AB695714168 /* Pods_wwg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,16 +97,15 @@
 		5828B7E020F4AB70005A736E /* PTWebDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTWebDownloader.swift; sourceTree = "<group>"; };
 		5828B7E120F4AB70005A736E /* PTApiObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTApiObserver.swift; sourceTree = "<group>"; };
 		5828B7E220F4AB70005A736E /* PTWebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTWebRequest.swift; sourceTree = "<group>"; };
-		5828B7E620F4AB70005A736E /* PTRecommendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRecommendViewController.xib; sourceTree = "<group>"; };
+		5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRecommendTabViewController.xib; sourceTree = "<group>"; };
 		5828B7E720F4AB70005A736E /* PTSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSettingViewController.swift; sourceTree = "<group>"; };
-		5828B7E820F4AB70005A736E /* PTFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTFeedViewController.swift; sourceTree = "<group>"; };
-		5828B7E920F4AB70005A736E /* PTRecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRecommendViewController.swift; sourceTree = "<group>"; };
+		5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTFeedTabViewController.swift; sourceTree = "<group>"; };
+		5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRecommendTabViewController.swift; sourceTree = "<group>"; };
 		5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTSettingViewController.xib; sourceTree = "<group>"; };
-		5828B7EB20F4AB70005A736E /* PTFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTFeedViewController.xib; sourceTree = "<group>"; };
+		5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTFeedTabViewController.xib; sourceTree = "<group>"; };
 		5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTKakaoLocationSearchViewController.xib; sourceTree = "<group>"; };
 		5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTKakaoLocationSearchViewController.swift; sourceTree = "<group>"; };
 		5828B7EF20F4AB70005A736E /* PTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTModel.swift; sourceTree = "<group>"; };
-		5828B7F020F4AB70005A736E /* PTPOItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTPOItem.swift; sourceTree = "<group>"; };
 		5828B7F120F4AB70005A736E /* PTPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTPlace.swift; sourceTree = "<group>"; };
 		5828B7F220F4AB70005A736E /* PTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTUser.swift; sourceTree = "<group>"; };
 		5828B7F420F4AB71005A736E /* PTAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTAuthManager.swift; sourceTree = "<group>"; };
@@ -115,6 +123,16 @@
 		5828B82A20F4ABA6005A736E /* wwg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wwg-Bridging-Header.h"; sourceTree = "<group>"; };
 		5828B82D20F4AD0D005A736E /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoOpenSDK.framework; path = wwg/Frameworks/KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		5828B82F20F4ADCD005A736E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeedTabCollectionHeaderView.swift; sourceTree = "<group>"; };
+		586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTFeedTabCollectionHeaderView.xib; sourceTree = "<group>"; };
+		586CAF1B20FC74FD000166B1 /* PTPlaceSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTPlaceSearchViewController.swift; sourceTree = "<group>"; };
+		586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTPlaceSearchViewController.xib; sourceTree = "<group>"; };
+		586CAF2020FC9804000166B1 /* KakaoNavi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoNavi.framework; path = wwg/Frameworks/KakaoNavi.framework; sourceTree = "<group>"; };
+		586CAF2220FC99DB000166B1 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
+		58940A4E20F717BC0006F9DA /* PTFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeed.swift; sourceTree = "<group>"; };
+		58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTFeedCollectionViewCell.xib; sourceTree = "<group>"; };
+		58940A5820F736580006F9DA /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
 		5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wwg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4D8100739B686C8E34D390 /* Pods-wwg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wwg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wwg/Pods-wwg.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586CAF2320FC99DC000166B1 /* KakaoCommon.framework in Frameworks */,
+				586CAF2120FC9804000166B1 /* KakaoNavi.framework in Frameworks */,
 				5828B83020F4ADCD005A736E /* MapKit.framework in Frameworks */,
 				93C848BCDBF49AB695714168 /* Pods_wwg.framework in Frameworks */,
 				5828B82E20F4AD0E005A736E /* KakaoOpenSDK.framework in Frameworks */,
@@ -136,6 +156,8 @@
 		3B3DA9F15B6BE10B45272159 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				586CAF2220FC99DB000166B1 /* KakaoCommon.framework */,
+				586CAF2020FC9804000166B1 /* KakaoNavi.framework */,
 				5828B82F20F4ADCD005A736E /* MapKit.framework */,
 				5828B82D20F4AD0D005A736E /* KakaoOpenSDK.framework */,
 				5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */,
@@ -176,6 +198,7 @@
 				5828B7C620F49FBB005A736E /* Source */,
 				5828B7B120F47B84005A736E /* AppDelegate.swift */,
 				5828B7BB20F47B85005A736E /* Assets.xcassets */,
+				58940A5820F736580006F9DA /* icons.xcassets */,
 				5828B7BD20F47B85005A736E /* LaunchScreen.storyboard */,
 				5828B7C020F47B85005A736E /* Info.plist */,
 				5828B7B820F47B84005A736E /* wwg.xcdatamodeld */,
@@ -187,6 +210,7 @@
 		5828B7C620F49FBB005A736E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				586CAF1F20FC77B7000166B1 /* ViewControllers */,
 				5828B7E520F4AB70005A736E /* MainTabViewController */,
 				5828B7F320F4AB71005A736E /* Managers */,
 				5828B7EE20F4AB70005A736E /* Models */,
@@ -228,10 +252,10 @@
 		5828B7D520F4AB70005A736E /* Popups */ = {
 			isa = PBXGroup;
 			children = (
+				5828B7D920F4AB70005A736E /* Views */,
 				5828B7D620F4AB70005A736E /* PTPopupViewManager.swift */,
 				5828B7D720F4AB70005A736E /* PTPopupViewController.swift */,
 				5828B7D820F4AB70005A736E /* PTPopupViewController.xib */,
-				5828B7D920F4AB70005A736E /* Views */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -261,12 +285,14 @@
 		5828B7E520F4AB70005A736E /* MainTabViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5828B7E920F4AB70005A736E /* PTRecommendViewController.swift */,
-				5828B7E620F4AB70005A736E /* PTRecommendViewController.xib */,
+				58940A5120F727A10006F9DA /* Cells */,
+				58940A5020F727980006F9DA /* Views */,
+				5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */,
+				5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */,
+				5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */,
+				5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */,
 				5828B7E720F4AB70005A736E /* PTSettingViewController.swift */,
 				5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */,
-				5828B7E820F4AB70005A736E /* PTFeedViewController.swift */,
-				5828B7EB20F4AB70005A736E /* PTFeedViewController.xib */,
 				5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */,
 				5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */,
 			);
@@ -277,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				5828B7EF20F4AB70005A736E /* PTModel.swift */,
-				5828B7F020F4AB70005A736E /* PTPOItem.swift */,
+				58940A4E20F717BC0006F9DA /* PTFeed.swift */,
 				5828B7F120F4AB70005A736E /* PTPlace.swift */,
 				5828B7F220F4AB70005A736E /* PTUser.swift */,
 			);
@@ -297,6 +323,33 @@
 				5828B7FA20F4AB71005A736E /* PTKeychainManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		586CAF1F20FC77B7000166B1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				586CAF1B20FC74FD000166B1 /* PTPlaceSearchViewController.swift */,
+				586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		58940A5020F727980006F9DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		58940A5120F727A10006F9DA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */,
+				58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */,
+				586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */,
+				586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,17 +414,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58940A5520F727BE0006F9DA /* PTFeedCollectionViewCell.xib in Resources */,
 				5828B82920F4AB7B005A736E /* PTLoginViewController.xib in Resources */,
-				5828B81320F4AB71005A736E /* PTFeedViewController.xib in Resources */,
+				5828B81320F4AB71005A736E /* PTFeedTabViewController.xib in Resources */,
 				5828B7BF20F47B85005A736E /* LaunchScreen.storyboard in Resources */,
 				5828B80520F4AB71005A736E /* PTPopupViewController.xib in Resources */,
 				5828B7BC20F47B85005A736E /* Assets.xcassets in Resources */,
 				5828B81220F4AB71005A736E /* PTSettingViewController.xib in Resources */,
+				586CAF1E20FC74FD000166B1 /* PTPlaceSearchViewController.xib in Resources */,
 				5828B82820F4AB7B005A736E /* PTMainViewController.xib in Resources */,
+				58940A5920F736580006F9DA /* icons.xcassets in Resources */,
 				5828B7CB20F49FCF005A736E /* PTRootViewController.xib in Resources */,
 				5828B80720F4AB71005A736E /* PTPlacePopupView.xib in Resources */,
-				5828B80E20F4AB71005A736E /* PTRecommendViewController.xib in Resources */,
+				5828B80E20F4AB71005A736E /* PTRecommendTabViewController.xib in Resources */,
 				5828B81420F4AB71005A736E /* PTKakaoLocationSearchViewController.xib in Resources */,
+				586CAF1A20F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,15 +512,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5828B81720F4AB71005A736E /* PTPOItem.swift in Sources */,
 				5828B82620F4AB7B005A736E /* PTMainViewController.swift in Sources */,
 				5828B7FC20F4AB71005A736E /* PTAnimation.swift in Sources */,
-				5828B81020F4AB71005A736E /* PTFeedViewController.swift in Sources */,
+				5828B81020F4AB71005A736E /* PTFeedTabViewController.swift in Sources */,
 				5828B7BA20F47B84005A736E /* wwg.xcdatamodeld in Sources */,
 				5828B81B20F4AB71005A736E /* PTLocationManager.swift in Sources */,
-				5828B81120F4AB71005A736E /* PTRecommendViewController.swift in Sources */,
+				5828B81120F4AB71005A736E /* PTRecommendTabViewController.swift in Sources */,
 				5828B82720F4AB7B005A736E /* PTLoginViewController.swift in Sources */,
 				5828B81920F4AB71005A736E /* PTUser.swift in Sources */,
+				58940A4F20F717BC0006F9DA /* PTFeed.swift in Sources */,
 				5828B7FD20F4AB71005A736E /* PTDeviceInfo.swift in Sources */,
 				5828B80620F4AB71005A736E /* PTPlacePopupView.swift in Sources */,
 				5828B7FF20F4AB71005A736E /* PTGeometry.swift in Sources */,
@@ -477,12 +534,15 @@
 				5828B7FE20F4AB71005A736E /* PTUtility.swift in Sources */,
 				5828B81520F4AB71005A736E /* PTKakaoLocationSearchViewController.swift in Sources */,
 				5828B81E20F4AB71005A736E /* PTDBManager.swift in Sources */,
+				586CAF1D20FC74FD000166B1 /* PTPlaceSearchViewController.swift in Sources */,
 				5828B80120F4AB71005A736E /* PTColor.swift in Sources */,
 				5828B80A20F4AB71005A736E /* PTApiResponse.swift in Sources */,
 				5828B81820F4AB71005A736E /* PTPlace.swift in Sources */,
+				586CAF1920F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift in Sources */,
 				5828B80920F4AB71005A736E /* PTApiRequest.swift in Sources */,
 				5828B81D20F4AB71005A736E /* PTUserManager.swift in Sources */,
 				5828B80420F4AB71005A736E /* PTPopupViewController.swift in Sources */,
+				58940A5420F727BE0006F9DA /* PTFeedCollectionViewCell.swift in Sources */,
 				5828B80320F4AB71005A736E /* PTPopupViewManager.swift in Sources */,
 				5828B80C20F4AB71005A736E /* PTApiObserver.swift in Sources */,
 				5828B81C20F4AB71005A736E /* PTCoredataManager.swift in Sources */,
@@ -634,6 +694,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wwg/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = wwg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -660,6 +721,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wwg/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = wwg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
         
+        // 
+        PTDBManager.shared.deleteOrphanedModels()
+        
         // Network Start
         PTNetworkManager.sharedInstance.start()
         

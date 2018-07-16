@@ -20,9 +20,9 @@ class PTMainViewController: UITabBarController {
     
     var currentTag: Int = 0
     
-    let feedViewController: PTFeedViewController
+    let feedViewController: PTFeedTabViewController
     let feedNavigationController: UINavigationController
-    let recommendViewController: PTRecommendViewController
+    let recommendViewController: PTRecommendTabViewController
     let recommendNavigationController: UINavigationController
     let searchViewController: PTKakaoLocationSearchViewController
     let searchNavigationController: UINavigationController
@@ -30,10 +30,10 @@ class PTMainViewController: UITabBarController {
     let settingNavigationController: UINavigationController
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.feedViewController = PTFeedViewController(nibName: "PTFeedViewController", bundle: nil)
+        self.feedViewController = PTFeedTabViewController(nibName: "PTFeedTabViewController", bundle: nil)
         self.feedNavigationController = UINavigationController(rootViewController: self.feedViewController)
         
-        self.recommendViewController = PTRecommendViewController(nibName: "PTRecommendViewController", bundle: nil)
+        self.recommendViewController = PTRecommendTabViewController(nibName: "PTRecommendTabViewController", bundle: nil)
         self.recommendNavigationController = UINavigationController(rootViewController: self.recommendViewController)
         
         self.searchViewController = PTKakaoLocationSearchViewController(nibName: "PTKakaoLocationSearchViewController", bundle: nil)

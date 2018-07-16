@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import GoogleMaps
 
 class PTPlacePopupView: PTXibView {
     
@@ -16,6 +17,9 @@ class PTPlacePopupView: PTXibView {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var mapView: GMSMapView!
+    
+    var placeType: PTPlaceType = .unknown
     var _place: PTPlace?
     public var place: PTPlace? {
         get {
@@ -28,7 +32,9 @@ class PTPlacePopupView: PTXibView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        self.mapView.isUserInteractionEnabled = false
+        
         self.scrollView.delegate = self;
         self.scrollView.isPagingEnabled = true;
         self.scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
@@ -41,48 +47,17 @@ class PTPlacePopupView: PTXibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func updateAddButton() {
-//        guard let place = self.place else {
-//            return
-//        }
-//
-//        self.addButton.removeTarget(self, action: nil, for: .allEvents)
-//        if let currentUser = PTUserManager.currentUser() {
-//            if currentUser.isMyPlace(place) {
-//                self.addButton.setTitle("remove", for: .normal)
-//                self.addButton.addTarget(self, action: #selector(deletePlaceButtonPressd(_:)), for: .touchUpInside)
-//            } else {
-//                self.addButton.setTitle("add", for: .normal)
-//                self.addButton.addTarget(self, action: #selector(savePlaceButtonPressed(_:)), for: .touchUpInside)
-//            }
-//        }
-    }
     
-    @objc private func savePlaceButtonPressed(_ sender: UIButton) {
-        print(#function)
+    @IBAction func addPlaceButtonPressed(_ sender: Any) {
+        debugPrint(#function)
         
         if let place = self.place {
             if let currentUser = PTUserManager.currentUser() {
-                currentUser.addPlace(place, syncWithServer: false) {
-                    self.updateAddButton()
+                currentUser.addPlace(type: self.placeType, place: place, syncWithServer: false) {
+                    PTPopupViewManager.hidePopupView(animated: true)
                 }
             }
         }
-    }
-    
-    @objc private func deletePlaceButtonPressd(_ sender: UIButton) {
-        print(#function)
-        
-        
-        if let place = self.place {
-            if let currentUser = PTUserManager.currentUser() {
-                currentUser.removePlace(place, syncWithServer: false) {
-                    self.updateAddButton()
-                }
-            }
-        }
-        
-        self.updateAddButton()
     }
 }
 

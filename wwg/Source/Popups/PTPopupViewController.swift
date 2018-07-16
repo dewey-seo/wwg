@@ -8,26 +8,6 @@
 
 import UIKit
 
-enum PTPopupViewHideContext: Int {
-    case unknown
-    case scrolling
-    case tapGesture
-    case fromManager
-}
-
-enum PTPopupViewState: Int {
-    case unknown
-    case onHideAndShowAnimation
-    case onShowAnimation
-    case onHideAnimation
-    case showedPopup
-    case closed
-}
-
-protocol PTPopupViewShareDelegate: class {
-    func popupViewStateShare(state: PTPopupViewState)
-}
-
 let PTPopupViewControllerBGAlpha: CGFloat = 0.8
 typealias PTPopupViewAnimationCompletionBlock = () -> Void
 

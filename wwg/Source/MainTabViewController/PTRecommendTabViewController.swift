@@ -1,5 +1,5 @@
 //
-//  PTRecommendViewController.swift
+//  PTRecommendTabViewController.swift
 //  Path
 //
 //  Created by dewey on 2018. 7. 3..
@@ -12,7 +12,7 @@ import GooglePlaces
 import RealmSwift
 import MapKit
 
-class PTRecommendViewController: UIViewController {
+class PTRecommendTabViewController: UIViewController {
 
     @IBOutlet weak var googleMapView: GMSMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -107,7 +107,7 @@ class PTRecommendViewController: UIViewController {
     }
 }
 
-extension PTRecommendViewController: UITableViewDelegate, UITableViewDataSource {
+extension PTRecommendTabViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -171,7 +171,7 @@ extension PTRecommendViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension PTRecommendViewController: CLLocationManagerDelegate {
+extension PTRecommendTabViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -182,7 +182,7 @@ extension PTRecommendViewController: CLLocationManagerDelegate {
     }
 }
 
-extension PTRecommendViewController: GMSMapViewDelegate {
+extension PTRecommendTabViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
     }
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {

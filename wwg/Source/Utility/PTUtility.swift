@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+extension UIView {
+    func frameWidth() -> CGFloat {
+        return self.frame.size.width
+    }
+    func frameHeight() -> CGFloat {
+        return self.frame.size.height
+    }
+}

@@ -9,13 +9,31 @@
 import UIKit
 import RealmSwift
 
+enum PTPlaceType: Int {
+    case unknown
+    case favorite
+    case significant
+    
+    func storage(_ user: PTUser) -> List<PTPlace>? {
+        switch self {
+        case .unknown:
+            return nil
+        case .favorite:
+            return user.favoritePlaces
+        case .significant:
+            return user.significantPlaces
+        }
+    }
+}
+
 class PTUser: PTModel {
     @objc dynamic var nickName = "unknown"
     @objc dynamic var profileImageUrl: String?
     @objc dynamic var thumbnailImageUrl: String?
     
-    var places = List<PTPlace>()
-    
+    var favoritePlaces = List<PTPlace>()
+    var significantPlaces = List<PTPlace>()
+
     static func createUser(userInfo: KOUserMe) -> PTUser {
         let user = PTUser()
         
@@ -32,8 +50,14 @@ class PTUser: PTModel {
         return user
     }
     
-    func isMyPlace(_ place: PTPlace) -> Bool {
-        let result = self.places.filter("id = %@", place.id)
+    func isMyPlace(type: PTPlaceType, place: PTPlace) -> Bool {
+        guard let storage = type.storage(self) else {
+            print("place type is not defined")
+            return false
+        }
+        
+        let result = storage.filter("id = %@", place.id)
+        
         if result.count > 0 {
             return true
         } else {
@@ -41,51 +65,35 @@ class PTUser: PTModel {
         }
     }
     
-    func addPlace(_ place: PTPlace, syncWithServer: Bool, _ completion: @escaping () -> Void) {
-        if syncWithServer == true {
-            PTApiRequest.request().savePlace(place: place, userId: self.id).observeCompletion { (response) in
-                if response.isSuccess == true {
-                    print(response)
-                    
-                    if self.isMyPlace(place) == false {
-                        try! PTDBManager.shared.realm.write {
-                            self.places.append(place)
-                        }
-                    }
-                }
-                completion()
-            }
-        } else {
-            if self.isMyPlace(place) == false {
-                try! PTDBManager.shared.realm.write {
-                    self.places.append(place)
-                }
-            }
-            completion()
-        }
-
-    }
-    
-    func removePlace(_ place: PTPlace, syncWithServer: Bool, _ completion: @escaping () -> Void) {
-        if syncWithServer == true {
-            PTApiRequest.request().deletePlace(place: place, userId: self.id).observeCompletion { (response) in
-                if response.isSuccess == true {
-                    if let index = self.places.index(matching: "id = %@", place.id) {
-                        try! PTDBManager.shared.realm.write {
-                            self.places.remove(at: index)
-                        }
-                    }
-                }
-                completion()
-            }
-        } else {
-            if let index = self.places.index(matching: "id = %@", place.id) {
-                try! PTDBManager.shared.realm.write {
-                    self.places.remove(at: index)
-                }
-            }
-            completion()
+    func addPlace(type: PTPlaceType, place: PTPlace, syncWithServer: Bool, _ completion: (() -> Void)?) {
+        guard let storage = type.storage(self) else {
+            assert(false, "place type is not defined")
         }
         
+        if self.isMyPlace(type: type, place: place) == false {
+            try! PTDBManager.shared.realm.write {
+                storage.append(place)
+            }
+        }
+        
+        if let block = completion {
+            block()
+        }
+    }
+    
+    func removePlace(type: PTPlaceType, place: PTPlace, syncWithServer: Bool, _ completion: (() -> Void)?) {
+        guard let storage = type.storage(self) else {
+            assert(false, "place type is not defined")
+        }
+        
+        if let index = storage.index(matching: "id = %@", place.id) {
+            try! PTDBManager.shared.realm.write {
+                storage.remove(at: index)
+            }
+        }
+        
+        if let block = completion {
+            block()
+        }
     }
 }

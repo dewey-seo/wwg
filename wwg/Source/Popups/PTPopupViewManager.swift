@@ -8,11 +8,42 @@
 
 import UIKit
 
+enum PTPopupViewHideContext: Int {
+    case unknown
+    case scrolling
+    case tapGesture
+    case fromManager
+}
+
+enum PTPopupViewState: Int {
+    case unknown
+    case onHideAndShowAnimation
+    case onShowAnimation
+    case onHideAnimation
+    case showedPopup
+    case closed
+}
+
+protocol PTPopupViewShareDelegate: class {
+    func popupViewStateShare(state: PTPopupViewState)
+}
+
 typealias PTPopupViewControllerPresentBlock = (PTPopupViewController) -> Void
 
 class PTPopupViewManager: NSObject {
 
-    static let sharedInstance: PTPopupViewManager = { return PTPopupViewManager() }()
+    static let shared: PTPopupViewManager = {
+        return PTPopupViewManager()
+    }()
+    
+    static var delegate: PTPopupViewShareDelegate? {
+        get {
+            return PTPopupViewManager.shared.delegate
+        }
+        set(newValue) {
+            PTPopupViewManager.shared.delegate = newValue
+        }
+    }
     
     var popupViewState: PTPopupViewState = .closed
     
@@ -21,8 +52,10 @@ class PTPopupViewManager: NSObject {
         return AppDelegate.topViewController()
     }
     
+    weak var delegate: PTPopupViewShareDelegate?
+    
     static func showPopupView(_ popupView: UIView, withAnimation animated:Bool) {
-        let shared = PTPopupViewManager.sharedInstance
+        let shared = PTPopupViewManager.shared
         
         shared.presentPopupViewControllerIfNeeded { (popupViewController) in
             popupViewController.showPopupView(popupView, animated: animated)
@@ -30,7 +63,7 @@ class PTPopupViewManager: NSObject {
     }
     
     static func hidePopupView(animated: Bool, hideContext: PTPopupViewHideContext = .unknown) {
-        let shared = PTPopupViewManager.sharedInstance
+        let shared = PTPopupViewManager.shared
         
         if let popupViewController = shared.popupViewController {
             popupViewController.hidePopupView(animated: animated, hideContext: hideContext)
@@ -66,10 +99,15 @@ class PTPopupViewManager: NSObject {
 
 extension PTPopupViewManager: PTPopupViewShareDelegate {
     func popupViewStateShare(state: PTPopupViewState) {
+        if let delegate = self.delegate {
+            delegate.popupViewStateShare(state: state)
+        }
+        
         self.popupViewState = state
         
         if case .closed = state {
             self.popupViewController = nil
+            self.delegate = nil
         }
     }
 }

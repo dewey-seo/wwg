@@ -13,8 +13,17 @@ let RealmQueue = DispatchQueue(label: "realm_queue", attributes: .concurrent)
 
 class PTDBManager: NSObject {
     static let shared: PTDBManager = { return PTDBManager() }()
+    var realm: Realm!
     
-    let realm = try! Realm()
+    override init() {
+        super.init()
+        do {
+            try self.realm = Realm()
+        } catch let error {
+            debugPrint(error.localizedDescription)
+        }
+    }
+    
     
     func deleteAll() {
         try! realm.write {
@@ -63,5 +72,15 @@ class PTDBManager: NSObject {
                 realm.delete(results)
             }
         }
+    }
+}
+
+extension PTDBManager {
+    func deleteOrphanedModels() {
+        // Place
+//        let orphanedPlaces = realm.objects(PTPlace.self).filter("feeds.@count == 0")
+//        try! realm.write {
+//            realm.delete(orphanedPlaces)
+//        }
     }
 }
