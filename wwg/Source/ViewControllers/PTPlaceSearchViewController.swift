@@ -63,7 +63,6 @@ extension PTPlaceSearchViewController: UITableViewDelegate, UITableViewDataSourc
             let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
             popupView.placeType = self.placeType
             popupView.place = place
-            popupView.view.backgroundColor = .yellow
             PTPopupViewManager.showPopupView(popupView, withAnimation: true)
             PTPopupViewManager.delegate = self
             
@@ -79,6 +78,7 @@ extension PTPlaceSearchViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension PTPlaceSearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         self.close()
     }
     
@@ -97,18 +97,8 @@ extension PTPlaceSearchViewController: UISearchBarDelegate {
         debugPrint("search: \(searchText)")
         
         if searchText.count != 0 {
-            self.keywordSearch(searchText) { (found, json) in
-                if found != true {
-                    self.addressSearch(searchText) { (found, json) in
-                        if found != true {
-                            self.showSearchResult(success: false, result: nil)
-                        } else {
-                            self.showSearchResult(success: found, result: json)
-                        }
-                    }
-                } else {
-                    self.showSearchResult(success: found, result: json)
-                }
+            PTPlaceSearchHelper.shared.search(searchText) { (isSuccess, result) in
+                self.showSearchResult(success: isSuccess, result: result)
             }
         }
     }
@@ -121,26 +111,6 @@ extension PTPlaceSearchViewController: UISearchBarDelegate {
         } else {
             debugPrint("failed search")
             // show empty or failed search display
-        }
-    }
-    
-    func keywordSearch(_ searchString: String, _ completion: @escaping (Bool, [[String: Any]]?) -> Void) {
-        PTApiRequest.request().placeKeywordSearchForKakao(search: searchString).observeCompletion { (response) in
-            if let json = response.jsonResult, let documents = json["documents"] as? [[String: Any]], documents.count > 0 {
-                completion(true, documents)
-            } else {
-                completion(false, nil)
-            }
-        }
-    }
-    
-    func addressSearch(_ searchString: String, _ completion: @escaping (Bool, [[String: Any]]?) -> Void) {
-        PTApiRequest.request().placeAddressSearchForKakao(search: searchString).observeCompletion { (response) in
-            if let json = response.jsonResult, let documents = json["documents"] as? [[String: Any]], documents.count > 0 {
-                completion(true, documents)
-            } else {
-                completion(false, nil)
-            }
         }
     }
 }

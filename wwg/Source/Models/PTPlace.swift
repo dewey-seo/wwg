@@ -60,7 +60,7 @@ class PTPlace: PTModel {
         }
     }
     
-    static func createPlaces(placeInfos: [[String: Any]]) -> List<PTPlace>? {
+    static func createPlaces(placeInfos: [[String: Any]]) -> List<PTPlace> {
         let places = List<PTPlace>()
         for placeInfo in placeInfos {
             if let place = PTPlace.createPlace(placeInfo: placeInfo) {

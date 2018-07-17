@@ -13,7 +13,7 @@ typealias PTRootViewRefreshBlock = () -> Void
 class PTRootViewController: UIViewController {
 
     var isFirstAccess: Bool = true
-    var mainVC: PTMainViewController?
+    var mainVC: PTSharingTabBarController?
     var loginVC: PTLoginViewController?
     var navC: UINavigationController?
     
@@ -42,7 +42,7 @@ class PTRootViewController: UIViewController {
     
     private func prepareChangeViewController() {
         if KOSession.shared().isOpen() {
-            self.mainVC = PTMainViewController(nibName: "PTMainViewController", bundle: nil)
+            self.mainVC = PTSharingTabBarController(nibName: "PTSharingTabBarController", bundle: nil)
             if self.mainVC != nil {
                 self.showVC(self.mainVC!)
                 self.mainVC?.dismissBlock = {

@@ -15,14 +15,16 @@ import MapKit
 class PTRecommendTabViewController: UIViewController {
 
     @IBOutlet weak var googleMapView: GMSMapView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var bottomViewBottom: NSLayoutConstraint!
     
     let locationManager = CLLocationManager()
     
-    var results: Results<PTPlace>?
+    var items = List<PTPlace>()
+    var sortedItems = [PTPlace]()
     var notificationToken: NotificationToken?
     
-    var recommendPlaces = [PTPlace]()
     var marker: GMSMarker?
     
     override func viewDidLoad() {
@@ -32,9 +34,9 @@ class PTRecommendTabViewController: UIViewController {
         self.googleMapView.isMyLocationEnabled = true
         self.googleMapView.delegate = self
         
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(UINib(nibName: "PTRecommendTabPlaceCell", bundle: nil), forCellWithReuseIdentifier: PTRecommendTabPlaceCell.reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +59,9 @@ class PTRecommendTabViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
             
-            self.showMap()
-            self.showLocationList()
+            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else { return }
+            self.showMap(latitude: locValue.latitude, longitude: locValue.longitude)
+            self.fetchItems()
         } else {
             let status = CLLocationManager.authorizationStatus()
             switch status {
@@ -72,67 +75,71 @@ class PTRecommendTabViewController: UIViewController {
         }
     }
     
-    private func showMap() {
-        guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else { return }
-        let camera = GMSCameraPosition.camera(withLatitude: locValue.latitude,
-                                              longitude: locValue.longitude,
-                                              zoom: 15)
+    private func fetchItems() {
+        if let currentUser = PTUserManager.currentUser() {
+            // remove current notification
+            self.notificationToken?.invalidate()
+            self.notificationToken = nil
+            
+            // get new result
+            self.items = currentUser.favoritePlaces
+            self.notificationToken = self.items.observe({ (change) in
+                self.updatedDataSource(change)
+            })
+        }
+    }
+
+    private func updatedDataSource(_ change: RealmCollectionChange<List<PTPlace>>) {
+        guard let currentLocation: CLLocation = self.locationManager.location else { return }
         
+        self.sortedItems = items.sorted(by: { (placeA, placeB) -> Bool in
+            placeA.distance = currentLocation.distance(from: CLLocation(latitude: placeA.latitude, longitude: placeA.longitude))
+            placeB.distance = currentLocation.distance(from: CLLocation(latitude: placeB.latitude, longitude: placeB.longitude))
+            
+            return placeA.distance! < placeB.distance!
+        })
+        
+        self.collectionView.reloadData()
+    }
+    
+    private func showMap(latitude: Double, longitude: Double, scale: Float = 15) {
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: scale)
         self.googleMapView.camera = camera
         self.view.layoutIfNeeded()
     }
-    
-    private func showLocationList() {
-        guard let currentUser = PTUserManager.currentUser() else { return }
-        self.results = PTDBManager.shared.realm.objects(PTPlace.self).filter("ANY users == %@", currentUser)
-        
-        self.notificationToken = self.results?.observe({ (change) in
-            self.updatedDataSource(change)
-        })
+}
+
+extension PTRecommendTabViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        debugPrint("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
-    private func updatedDataSource(_ change: RealmCollectionChange<Results<PTPlace>>) {
-        guard let currentLocation: CLLocation = self.locationManager.location else { return }
-        
-        if let results = self.results {
-            self.recommendPlaces = results.sorted(by: { (placeA, placeB) -> Bool in
-                placeA.distance = currentLocation.distance(from: CLLocation(latitude: placeA.latitude, longitude: placeA.longitude))
-                placeB.distance = currentLocation.distance(from: CLLocation(latitude: placeB.latitude, longitude: placeB.longitude))
-                
-                return placeA.distance! < placeB.distance!
-            })
-            
-            self.tableView.reloadData()
-        }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.askAuthorization()
     }
 }
 
-extension PTRecommendTabViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+extension PTRecommendTabViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frameWidth() * 0.65, height: self.collectionView.frameHeight())
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.recommendPlaces.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.sortedItems.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cells")
-        if cell == nil {
-            cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "cells")
-        }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PTRecommendTabPlaceCell.reuseIdentifier, for: indexPath) as! PTRecommendTabPlaceCell
         
-        let place = self.recommendPlaces[indexPath.row]
-        cell?.textLabel?.text = place.name
-        if let distance = place.distance {
-            cell?.detailTextLabel?.text = "\(distance / 1000) Km"
-        }
-
-        return cell!
+        let place = self.sortedItems[indexPath.row]
+        cell.place = place
+        cell.contentView.backgroundColor = .red
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let place = self.recommendPlaces[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let place = self.sortedItems[indexPath.row]
         
         // remove
         self.marker?.map = nil
@@ -171,16 +178,7 @@ extension PTRecommendTabViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-extension PTRecommendTabViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        self.askAuthorization()
-    }
-}
+
 
 extension PTRecommendTabViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {

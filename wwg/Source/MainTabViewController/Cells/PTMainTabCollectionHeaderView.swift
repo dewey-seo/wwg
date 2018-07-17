@@ -1,5 +1,5 @@
 //
-//  PTFeedTabCollectionHeaderView.swift
+//  PTMainTabCollectionHeaderView.swift
 //  wwg
 //
 //  Created by dewey on 2018. 7. 13..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PTFeedTabCollectionHeaderView: UICollectionReusableView {
+class PTMainTabCollectionHeaderView: UICollectionReusableView {
     static var reuseIdentifier: String {
         return NSStringFromClass(self)
     }

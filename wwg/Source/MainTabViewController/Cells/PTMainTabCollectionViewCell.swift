@@ -1,5 +1,5 @@
 //
-//  PTFeedCollectionViewCell.swift
+//  PTMainTabCollectionViewCell.swift
 //  wwg
 //
 //  Created by dewey on 2018. 7. 12..
@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum PTFeedTabCollectionViewCellType: Int {
+enum PTMainTabCollectionViewCellType: Int {
     case empty
     case add
     case place
 }
 
-class PTFeedCollectionViewCell: UICollectionViewCell {
+class PTMainTabCollectionViewCell: UICollectionViewCell {
     static var reuseIdentifier: String {
        return NSStringFromClass(self)
     }
@@ -38,8 +38,8 @@ class PTFeedCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var _type: PTFeedTabCollectionViewCellType = .empty
-    var type: PTFeedTabCollectionViewCellType {
+    var _type: PTMainTabCollectionViewCellType = .empty
+    var type: PTMainTabCollectionViewCellType {
         get {
             return _type
         }
@@ -67,7 +67,7 @@ class PTFeedCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func refreshPlaceView() {
+    private func refreshPlaceView() {
         if let place = self.place {
             self.placeLabel.text = place.name
         }

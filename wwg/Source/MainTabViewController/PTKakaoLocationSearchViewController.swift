@@ -90,7 +90,6 @@ extension PTKakaoLocationSearchViewController: UITableViewDelegate, UITableViewD
         if let place = searchResult?[indexPath.row] {
             let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
             popupView.place = place
-            popupView.view.backgroundColor = .yellow
             PTPopupViewManager.showPopupView(popupView, withAnimation: true)
             
             // get google info

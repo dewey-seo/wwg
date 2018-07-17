@@ -13,6 +13,13 @@ let RealmQueue = DispatchQueue(label: "realm_queue", attributes: .concurrent)
 
 class PTDBManager: NSObject {
     static let shared: PTDBManager = { return PTDBManager() }()
+    
+    static func write(_ block: () -> Void) {
+        try! PTDBManager.shared.realm.write {
+            block()
+        }
+    }
+    
     var realm: Realm!
     
     override init() {

@@ -33,10 +33,10 @@
 		5828B80D20F4AB71005A736E /* PTWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E220F4AB70005A736E /* PTWebRequest.swift */; };
 		5828B80E20F4AB71005A736E /* PTRecommendTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */; };
 		5828B80F20F4AB71005A736E /* PTSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E720F4AB70005A736E /* PTSettingViewController.swift */; };
-		5828B81020F4AB71005A736E /* PTFeedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */; };
+		5828B81020F4AB71005A736E /* PTMainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E820F4AB70005A736E /* PTMainTabViewController.swift */; };
 		5828B81120F4AB71005A736E /* PTRecommendTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */; };
 		5828B81220F4AB71005A736E /* PTSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */; };
-		5828B81320F4AB71005A736E /* PTFeedTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */; };
+		5828B81320F4AB71005A736E /* PTMainTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EB20F4AB70005A736E /* PTMainTabViewController.xib */; };
 		5828B81420F4AB71005A736E /* PTKakaoLocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */; };
 		5828B81520F4AB71005A736E /* PTKakaoLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */; };
 		5828B81620F4AB71005A736E /* PTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7EF20F4AB70005A736E /* PTModel.swift */; };
@@ -50,21 +50,26 @@
 		5828B81F20F4AB71005A736E /* PTNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7F920F4AB71005A736E /* PTNetworkManager.swift */; };
 		5828B82020F4AB71005A736E /* PTKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7FA20F4AB71005A736E /* PTKeychainManager.swift */; };
 		5828B82120F4AB71005A736E /* PTLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B7FB20F4AB71005A736E /* PTLoginManager.swift */; };
-		5828B82620F4AB7B005A736E /* PTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B82220F4AB7A005A736E /* PTMainViewController.swift */; };
+		5828B82620F4AB7B005A736E /* PTSharingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B82220F4AB7A005A736E /* PTSharingTabBarController.swift */; };
 		5828B82720F4AB7B005A736E /* PTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B82320F4AB7A005A736E /* PTLoginViewController.swift */; };
-		5828B82820F4AB7B005A736E /* PTMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B82420F4AB7B005A736E /* PTMainViewController.xib */; };
+		5828B82820F4AB7B005A736E /* PTSharingTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B82420F4AB7B005A736E /* PTSharingTabBarController.xib */; };
 		5828B82920F4AB7B005A736E /* PTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5828B82520F4AB7B005A736E /* PTLoginViewController.xib */; };
 		5828B82E20F4AD0E005A736E /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5828B82D20F4AD0D005A736E /* KakaoOpenSDK.framework */; };
 		5828B83020F4ADCD005A736E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5828B82F20F4ADCD005A736E /* MapKit.framework */; };
-		586CAF1920F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */; };
-		586CAF1A20F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */; };
+		586CAF1920F888EF000166B1 /* PTMainTabCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF1720F888EF000166B1 /* PTMainTabCollectionHeaderView.swift */; };
+		586CAF1A20F888EF000166B1 /* PTMainTabCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF1820F888EF000166B1 /* PTMainTabCollectionHeaderView.xib */; };
 		586CAF1D20FC74FD000166B1 /* PTPlaceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF1B20FC74FD000166B1 /* PTPlaceSearchViewController.swift */; };
 		586CAF1E20FC74FD000166B1 /* PTPlaceSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */; };
 		586CAF2120FC9804000166B1 /* KakaoNavi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586CAF2020FC9804000166B1 /* KakaoNavi.framework */; };
 		586CAF2320FC99DC000166B1 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586CAF2220FC99DB000166B1 /* KakaoCommon.framework */; };
+		586CAF2C20FD85D6000166B1 /* PTRecommendTabPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF2A20FD85D6000166B1 /* PTRecommendTabPlaceCell.swift */; };
+		586CAF2D20FD85D6000166B1 /* PTRecommendTabPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF2B20FD85D6000166B1 /* PTRecommendTabPlaceCell.xib */; };
+		586CAF3120FDAD82000166B1 /* PTMyPlacesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF2F20FDAD82000166B1 /* PTMyPlacesTabViewController.swift */; };
+		586CAF3220FDAD82000166B1 /* PTMyPlacesTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 586CAF3020FDAD82000166B1 /* PTMyPlacesTabViewController.xib */; };
+		586CAF3420FDB941000166B1 /* PTPlaceSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAF3320FDB941000166B1 /* PTPlaceSearchHelper.swift */; };
 		58940A4F20F717BC0006F9DA /* PTFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A4E20F717BC0006F9DA /* PTFeed.swift */; };
-		58940A5420F727BE0006F9DA /* PTFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */; };
-		58940A5520F727BE0006F9DA /* PTFeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */; };
+		58940A5420F727BE0006F9DA /* PTMainTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A5220F727BE0006F9DA /* PTMainTabCollectionViewCell.swift */; };
+		58940A5520F727BE0006F9DA /* PTMainTabCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5320F727BE0006F9DA /* PTMainTabCollectionViewCell.xib */; };
 		58940A5920F736580006F9DA /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5820F736580006F9DA /* icons.xcassets */; };
 		93C848BCDBF49AB695714168 /* Pods_wwg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */; };
 /* End PBXBuildFile section */
@@ -99,10 +104,10 @@
 		5828B7E220F4AB70005A736E /* PTWebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTWebRequest.swift; sourceTree = "<group>"; };
 		5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRecommendTabViewController.xib; sourceTree = "<group>"; };
 		5828B7E720F4AB70005A736E /* PTSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSettingViewController.swift; sourceTree = "<group>"; };
-		5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTFeedTabViewController.swift; sourceTree = "<group>"; };
+		5828B7E820F4AB70005A736E /* PTMainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTMainTabViewController.swift; sourceTree = "<group>"; };
 		5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRecommendTabViewController.swift; sourceTree = "<group>"; };
 		5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTSettingViewController.xib; sourceTree = "<group>"; };
-		5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTFeedTabViewController.xib; sourceTree = "<group>"; };
+		5828B7EB20F4AB70005A736E /* PTMainTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTMainTabViewController.xib; sourceTree = "<group>"; };
 		5828B7EC20F4AB70005A736E /* PTKakaoLocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTKakaoLocationSearchViewController.xib; sourceTree = "<group>"; };
 		5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTKakaoLocationSearchViewController.swift; sourceTree = "<group>"; };
 		5828B7EF20F4AB70005A736E /* PTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTModel.swift; sourceTree = "<group>"; };
@@ -116,22 +121,27 @@
 		5828B7F920F4AB71005A736E /* PTNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTNetworkManager.swift; sourceTree = "<group>"; };
 		5828B7FA20F4AB71005A736E /* PTKeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTKeychainManager.swift; sourceTree = "<group>"; };
 		5828B7FB20F4AB71005A736E /* PTLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTLoginManager.swift; sourceTree = "<group>"; };
-		5828B82220F4AB7A005A736E /* PTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTMainViewController.swift; sourceTree = "<group>"; };
+		5828B82220F4AB7A005A736E /* PTSharingTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSharingTabBarController.swift; sourceTree = "<group>"; };
 		5828B82320F4AB7A005A736E /* PTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTLoginViewController.swift; sourceTree = "<group>"; };
-		5828B82420F4AB7B005A736E /* PTMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTMainViewController.xib; sourceTree = "<group>"; };
+		5828B82420F4AB7B005A736E /* PTSharingTabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTSharingTabBarController.xib; sourceTree = "<group>"; };
 		5828B82520F4AB7B005A736E /* PTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTLoginViewController.xib; sourceTree = "<group>"; };
 		5828B82A20F4ABA6005A736E /* wwg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wwg-Bridging-Header.h"; sourceTree = "<group>"; };
 		5828B82D20F4AD0D005A736E /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoOpenSDK.framework; path = wwg/Frameworks/KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		5828B82F20F4ADCD005A736E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeedTabCollectionHeaderView.swift; sourceTree = "<group>"; };
-		586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTFeedTabCollectionHeaderView.xib; sourceTree = "<group>"; };
+		586CAF1720F888EF000166B1 /* PTMainTabCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTMainTabCollectionHeaderView.swift; sourceTree = "<group>"; };
+		586CAF1820F888EF000166B1 /* PTMainTabCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTMainTabCollectionHeaderView.xib; sourceTree = "<group>"; };
 		586CAF1B20FC74FD000166B1 /* PTPlaceSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTPlaceSearchViewController.swift; sourceTree = "<group>"; };
 		586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTPlaceSearchViewController.xib; sourceTree = "<group>"; };
 		586CAF2020FC9804000166B1 /* KakaoNavi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoNavi.framework; path = wwg/Frameworks/KakaoNavi.framework; sourceTree = "<group>"; };
 		586CAF2220FC99DB000166B1 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
+		586CAF2A20FD85D6000166B1 /* PTRecommendTabPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTRecommendTabPlaceCell.swift; sourceTree = "<group>"; };
+		586CAF2B20FD85D6000166B1 /* PTRecommendTabPlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTRecommendTabPlaceCell.xib; sourceTree = "<group>"; };
+		586CAF2F20FDAD82000166B1 /* PTMyPlacesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTMyPlacesTabViewController.swift; sourceTree = "<group>"; };
+		586CAF3020FDAD82000166B1 /* PTMyPlacesTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTMyPlacesTabViewController.xib; sourceTree = "<group>"; };
+		586CAF3320FDB941000166B1 /* PTPlaceSearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTPlaceSearchHelper.swift; sourceTree = "<group>"; };
 		58940A4E20F717BC0006F9DA /* PTFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeed.swift; sourceTree = "<group>"; };
-		58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTFeedCollectionViewCell.swift; sourceTree = "<group>"; };
-		58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTFeedCollectionViewCell.xib; sourceTree = "<group>"; };
+		58940A5220F727BE0006F9DA /* PTMainTabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTMainTabCollectionViewCell.swift; sourceTree = "<group>"; };
+		58940A5320F727BE0006F9DA /* PTMainTabCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTMainTabCollectionViewCell.xib; sourceTree = "<group>"; };
 		58940A5820F736580006F9DA /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
 		5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wwg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4D8100739B686C8E34D390 /* Pods-wwg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wwg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wwg/Pods-wwg.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,13 +221,15 @@
 			isa = PBXGroup;
 			children = (
 				586CAF1F20FC77B7000166B1 /* ViewControllers */,
+				5828B7C720F49FBB005A736E /* RootViewController */,
 				5828B7E520F4AB70005A736E /* MainTabViewController */,
+				586CAF2420FD858C000166B1 /* RecommendTabViewController */,
+				586CAF2E20FDAD55000166B1 /* MyPlacesTabViewController */,
 				5828B7F320F4AB71005A736E /* Managers */,
 				5828B7EE20F4AB70005A736E /* Models */,
 				5828B7DC20F4AB70005A736E /* Network */,
 				5828B7D520F4AB70005A736E /* Popups */,
 				5828B7CD20F4AB70005A736E /* Utility */,
-				5828B7C720F49FBB005A736E /* RootViewController */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -229,8 +241,8 @@
 				5828B7C920F49FCF005A736E /* PTRootViewController.xib */,
 				5828B82320F4AB7A005A736E /* PTLoginViewController.swift */,
 				5828B82520F4AB7B005A736E /* PTLoginViewController.xib */,
-				5828B82220F4AB7A005A736E /* PTMainViewController.swift */,
-				5828B82420F4AB7B005A736E /* PTMainViewController.xib */,
+				5828B82220F4AB7A005A736E /* PTSharingTabBarController.swift */,
+				5828B82420F4AB7B005A736E /* PTSharingTabBarController.xib */,
 			);
 			path = RootViewController;
 			sourceTree = "<group>";
@@ -245,6 +257,7 @@
 				5828B7D220F4AB70005A736E /* PTXibView.swift */,
 				5828B7D320F4AB70005A736E /* PTColor.swift */,
 				5828B7D420F4AB70005A736E /* PTLoginObjects.swift */,
+				586CAF3320FDB941000166B1 /* PTPlaceSearchHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -286,11 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				58940A5120F727A10006F9DA /* Cells */,
-				58940A5020F727980006F9DA /* Views */,
-				5828B7E820F4AB70005A736E /* PTFeedTabViewController.swift */,
-				5828B7EB20F4AB70005A736E /* PTFeedTabViewController.xib */,
-				5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */,
-				5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */,
+				5828B7E820F4AB70005A736E /* PTMainTabViewController.swift */,
+				5828B7EB20F4AB70005A736E /* PTMainTabViewController.xib */,
 				5828B7E720F4AB70005A736E /* PTSettingViewController.swift */,
 				5828B7EA20F4AB70005A736E /* PTSettingViewController.xib */,
 				5828B7ED20F4AB70005A736E /* PTKakaoLocationSearchViewController.swift */,
@@ -334,20 +344,41 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		58940A5020F727980006F9DA /* Views */ = {
+		586CAF2420FD858C000166B1 /* RecommendTabViewController */ = {
 			isa = PBXGroup;
 			children = (
+				586CAF2520FD859F000166B1 /* Cells */,
+				5828B7E920F4AB70005A736E /* PTRecommendTabViewController.swift */,
+				5828B7E620F4AB70005A736E /* PTRecommendTabViewController.xib */,
 			);
-			path = Views;
+			path = RecommendTabViewController;
+			sourceTree = "<group>";
+		};
+		586CAF2520FD859F000166B1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				586CAF2A20FD85D6000166B1 /* PTRecommendTabPlaceCell.swift */,
+				586CAF2B20FD85D6000166B1 /* PTRecommendTabPlaceCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		586CAF2E20FDAD55000166B1 /* MyPlacesTabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				586CAF2F20FDAD82000166B1 /* PTMyPlacesTabViewController.swift */,
+				586CAF3020FDAD82000166B1 /* PTMyPlacesTabViewController.xib */,
+			);
+			path = MyPlacesTabViewController;
 			sourceTree = "<group>";
 		};
 		58940A5120F727A10006F9DA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				58940A5220F727BE0006F9DA /* PTFeedCollectionViewCell.swift */,
-				58940A5320F727BE0006F9DA /* PTFeedCollectionViewCell.xib */,
-				586CAF1720F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift */,
-				586CAF1820F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib */,
+				58940A5220F727BE0006F9DA /* PTMainTabCollectionViewCell.swift */,
+				58940A5320F727BE0006F9DA /* PTMainTabCollectionViewCell.xib */,
+				586CAF1720F888EF000166B1 /* PTMainTabCollectionHeaderView.swift */,
+				586CAF1820F888EF000166B1 /* PTMainTabCollectionHeaderView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -414,21 +445,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58940A5520F727BE0006F9DA /* PTFeedCollectionViewCell.xib in Resources */,
+				58940A5520F727BE0006F9DA /* PTMainTabCollectionViewCell.xib in Resources */,
 				5828B82920F4AB7B005A736E /* PTLoginViewController.xib in Resources */,
-				5828B81320F4AB71005A736E /* PTFeedTabViewController.xib in Resources */,
+				586CAF3220FDAD82000166B1 /* PTMyPlacesTabViewController.xib in Resources */,
+				5828B81320F4AB71005A736E /* PTMainTabViewController.xib in Resources */,
 				5828B7BF20F47B85005A736E /* LaunchScreen.storyboard in Resources */,
 				5828B80520F4AB71005A736E /* PTPopupViewController.xib in Resources */,
 				5828B7BC20F47B85005A736E /* Assets.xcassets in Resources */,
+				586CAF2D20FD85D6000166B1 /* PTRecommendTabPlaceCell.xib in Resources */,
 				5828B81220F4AB71005A736E /* PTSettingViewController.xib in Resources */,
 				586CAF1E20FC74FD000166B1 /* PTPlaceSearchViewController.xib in Resources */,
-				5828B82820F4AB7B005A736E /* PTMainViewController.xib in Resources */,
+				5828B82820F4AB7B005A736E /* PTSharingTabBarController.xib in Resources */,
 				58940A5920F736580006F9DA /* icons.xcassets in Resources */,
 				5828B7CB20F49FCF005A736E /* PTRootViewController.xib in Resources */,
 				5828B80720F4AB71005A736E /* PTPlacePopupView.xib in Resources */,
 				5828B80E20F4AB71005A736E /* PTRecommendTabViewController.xib in Resources */,
 				5828B81420F4AB71005A736E /* PTKakaoLocationSearchViewController.xib in Resources */,
-				586CAF1A20F888EF000166B1 /* PTFeedTabCollectionHeaderView.xib in Resources */,
+				586CAF1A20F888EF000166B1 /* PTMainTabCollectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,9 +545,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5828B82620F4AB7B005A736E /* PTMainViewController.swift in Sources */,
+				5828B82620F4AB7B005A736E /* PTSharingTabBarController.swift in Sources */,
+				586CAF3420FDB941000166B1 /* PTPlaceSearchHelper.swift in Sources */,
 				5828B7FC20F4AB71005A736E /* PTAnimation.swift in Sources */,
-				5828B81020F4AB71005A736E /* PTFeedTabViewController.swift in Sources */,
+				5828B81020F4AB71005A736E /* PTMainTabViewController.swift in Sources */,
 				5828B7BA20F47B84005A736E /* wwg.xcdatamodeld in Sources */,
 				5828B81B20F4AB71005A736E /* PTLocationManager.swift in Sources */,
 				5828B81120F4AB71005A736E /* PTRecommendTabViewController.swift in Sources */,
@@ -533,16 +567,18 @@
 				5828B80820F4AB71005A736E /* PTSessionManager.swift in Sources */,
 				5828B7FE20F4AB71005A736E /* PTUtility.swift in Sources */,
 				5828B81520F4AB71005A736E /* PTKakaoLocationSearchViewController.swift in Sources */,
+				586CAF2C20FD85D6000166B1 /* PTRecommendTabPlaceCell.swift in Sources */,
+				586CAF3120FDAD82000166B1 /* PTMyPlacesTabViewController.swift in Sources */,
 				5828B81E20F4AB71005A736E /* PTDBManager.swift in Sources */,
 				586CAF1D20FC74FD000166B1 /* PTPlaceSearchViewController.swift in Sources */,
 				5828B80120F4AB71005A736E /* PTColor.swift in Sources */,
 				5828B80A20F4AB71005A736E /* PTApiResponse.swift in Sources */,
 				5828B81820F4AB71005A736E /* PTPlace.swift in Sources */,
-				586CAF1920F888EF000166B1 /* PTFeedTabCollectionHeaderView.swift in Sources */,
+				586CAF1920F888EF000166B1 /* PTMainTabCollectionHeaderView.swift in Sources */,
 				5828B80920F4AB71005A736E /* PTApiRequest.swift in Sources */,
 				5828B81D20F4AB71005A736E /* PTUserManager.swift in Sources */,
 				5828B80420F4AB71005A736E /* PTPopupViewController.swift in Sources */,
-				58940A5420F727BE0006F9DA /* PTFeedCollectionViewCell.swift in Sources */,
+				58940A5420F727BE0006F9DA /* PTMainTabCollectionViewCell.swift in Sources */,
 				5828B80320F4AB71005A736E /* PTPopupViewManager.swift in Sources */,
 				5828B80C20F4AB71005A736E /* PTApiObserver.swift in Sources */,
 				5828B81C20F4AB71005A736E /* PTCoredataManager.swift in Sources */,

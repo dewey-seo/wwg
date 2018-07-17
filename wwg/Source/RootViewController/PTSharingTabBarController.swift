@@ -1,5 +1,5 @@
 //
-//  PTMainViewController.swift
+//  PTSharingTabBarController.swift
 //  Path
 //
 //  Created by dewey on 2018. 7. 2..
@@ -15,29 +15,29 @@ enum PTTabTag: Int {
     case setting
 }
 
-class PTMainViewController: UITabBarController {
+class PTSharingTabBarController: UITabBarController {
     var dismissBlock: PTRootViewRefreshBlock?
     
     var currentTag: Int = 0
     
-    let feedViewController: PTFeedTabViewController
-    let feedNavigationController: UINavigationController
+    let mainTabViewController: PTMainTabViewController
+    let mainTabNavigationController: UINavigationController
     let recommendViewController: PTRecommendTabViewController
     let recommendNavigationController: UINavigationController
-    let searchViewController: PTKakaoLocationSearchViewController
-    let searchNavigationController: UINavigationController
+    let myPlacesViewController: PTMyPlacesTabViewController
+    let myPlacesNavigationController: UINavigationController
     let settingViewController: PTSettingViewController
     let settingNavigationController: UINavigationController
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.feedViewController = PTFeedTabViewController(nibName: "PTFeedTabViewController", bundle: nil)
-        self.feedNavigationController = UINavigationController(rootViewController: self.feedViewController)
+        self.mainTabViewController = PTMainTabViewController(nibName: "PTMainTabViewController", bundle: nil)
+        self.mainTabNavigationController = UINavigationController(rootViewController: self.mainTabViewController)
         
         self.recommendViewController = PTRecommendTabViewController(nibName: "PTRecommendTabViewController", bundle: nil)
         self.recommendNavigationController = UINavigationController(rootViewController: self.recommendViewController)
         
-        self.searchViewController = PTKakaoLocationSearchViewController(nibName: "PTKakaoLocationSearchViewController", bundle: nil)
-        self.searchNavigationController = UINavigationController(rootViewController: self.searchViewController)
+        self.myPlacesViewController = PTMyPlacesTabViewController(nibName: "PTMyPlacesTabViewController", bundle: nil)
+        self.myPlacesNavigationController = UINavigationController(rootViewController: self.myPlacesViewController)
         
         self.settingViewController = PTSettingViewController(nibName: "PTSettingViewController", bundle: nil)
         self.settingNavigationController = UINavigationController(rootViewController: self.settingViewController)
@@ -47,9 +47,9 @@ class PTMainViewController: UITabBarController {
         let searchTabItem = UITabBarItem.init(tabBarSystemItem: .search, tag: PTTabTag.search.rawValue)
         let settingTabItem = UITabBarItem.init(tabBarSystemItem: .more, tag: PTTabTag.setting.rawValue)
         
-        self.feedViewController.tabBarItem = feedTabItem
+        self.mainTabViewController.tabBarItem = feedTabItem
         self.recommendViewController.tabBarItem = recommendTabItem
-        self.searchViewController.tabBarItem = searchTabItem
+        self.myPlacesViewController.tabBarItem = searchTabItem
         self.settingViewController.tabBarItem = settingTabItem
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -62,7 +62,7 @@ class PTMainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.viewControllers = [self.feedNavigationController, self.recommendNavigationController, self.searchNavigationController, self.settingNavigationController]
+        self.viewControllers = [self.mainTabNavigationController, self.recommendNavigationController, self.myPlacesNavigationController, self.settingNavigationController]
     }
     
     func close() {
@@ -113,7 +113,7 @@ enum Direction {
     }
 }
 
-extension PTMainViewController {
+extension PTSharingTabBarController {
     override var selectedIndex: Int {
         willSet(newValue) {
             if let selectedVC = self.selectedViewController {
