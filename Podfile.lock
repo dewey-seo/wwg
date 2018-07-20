@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.7.3)
   - AlamofireNetworkActivityLogger (2.3.0):
     - Alamofire (~> 4.6)
+  - Google-Mobile-Ads-SDK (7.31.0)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -12,6 +13,7 @@ PODS:
     - GooglePlaces (= 2.7.0)
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
+  - JTChartView (1.0.1)
   - ReachabilitySwift (4.1.0)
   - Realm (3.7.4):
     - Realm/Headers (= 3.7.4)
@@ -24,9 +26,11 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityLogger
+  - Google-Mobile-Ads-SDK
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - JTChartView
   - ReachabilitySwift
   - RealmSwift
   - SnapKit
@@ -36,9 +40,11 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireNetworkActivityLogger
+    - Google-Mobile-Ads-SDK
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - JTChartView
     - ReachabilitySwift
     - Realm
     - RealmSwift
@@ -48,15 +54,17 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
+  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  JTChartView: cfe9c9cd95c04331df12d5d174d40cc3a9d39127
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Realm: a469bb59e33f9926102ccaea4349822c53b9117e
   RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 69cdd0c2a82af0c7c04b8fb8b64e7da6f555b6d5
+PODFILE CHECKSUM: 92a51269fa7f9126fc45d9680131e41fabf00bf5
 
 COCOAPODS: 1.5.3

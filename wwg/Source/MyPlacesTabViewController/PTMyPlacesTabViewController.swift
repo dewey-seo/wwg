@@ -130,7 +130,7 @@ extension PTMyPlacesTabViewController: UITableViewDelegate, UITableViewDataSourc
         let place = self.items()[indexPath.row]
         
         if onSearching() == true {
-            let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
+            let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: PTPlacePopupView.defaultSize().width, height: PTPlacePopupView.defaultSize().height))
             popupView.placeType = .favorite
             popupView.place = place
             PTPopupViewManager.showPopupView(popupView, withAnimation: true)
@@ -141,6 +141,14 @@ extension PTMyPlacesTabViewController: UITableViewDelegate, UITableViewDataSourc
                     print(response)
                 }
             }
+        } else {
+            let vc = PTPlaceInfoWebViewController(nibName: "PTPlaceInfoWebViewController", bundle: nil)
+            vc.kakaoPlaceId = place.id
+            
+            let navc = UINavigationController.init(rootViewController: vc)
+            self.present(navc, animated: true, completion: nil)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

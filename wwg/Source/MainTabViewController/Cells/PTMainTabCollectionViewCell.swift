@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol PTMainTabCollectionViewCellDelegate: class {
+    func delete(cell: PTMainTabCollectionViewCell)
+    func edit(cell: PTMainTabCollectionViewCell)
+}
+
 enum PTMainTabCollectionViewCellType: Int {
     case empty
     case add
@@ -22,6 +27,8 @@ class PTMainTabCollectionViewCell: UICollectionViewCell {
     // Place
     @IBOutlet weak var placeView: UIView!
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var placeDeleteImageView: UIImageView!
+    @IBOutlet weak var editView: UIView!
     
     // Add
     @IBOutlet weak var addView: UIView!
@@ -29,12 +36,23 @@ class PTMainTabCollectionViewCell: UICollectionViewCell {
     // Empty
     @IBOutlet weak var emptyView: UIView!
     
+    weak var delegate: PTMainTabCollectionViewCellDelegate?
+    
     var _place: PTPlace?
     var place: PTPlace? {
         get { return _place }
         set(newPlace) {
              _place = newPlace
             self.refreshPlaceView()
+        }
+    }
+    
+    var _isEditMode: Bool = false
+    var isEditMode: Bool {
+        get {return _isEditMode}
+        set(newMode) {
+            _isEditMode = newMode
+            self.editView.isHidden = !_isEditMode
         }
     }
     
@@ -70,6 +88,17 @@ class PTMainTabCollectionViewCell: UICollectionViewCell {
     private func refreshPlaceView() {
         if let place = self.place {
             self.placeLabel.text = place.name
+        }
+    }
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        if let delegate = self.delegate {
+            delegate.edit(cell: self)
+        }
+    }
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        if let delegate = self.delegate {
+            delegate.delete(cell: self)
         }
     }
 }

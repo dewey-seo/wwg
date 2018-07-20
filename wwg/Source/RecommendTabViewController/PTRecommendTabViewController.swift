@@ -11,6 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import RealmSwift
 import MapKit
+import JTChartView
 
 class PTRecommendTabViewController: UIViewController {
 
@@ -18,6 +19,12 @@ class PTRecommendTabViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var bottomViewBottom: NSLayoutConstraint!
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var chartBaseView: UIView!
+    @IBOutlet weak var selectRangeView: PTRangeSlider!
+    
+    var chartView: JTChartView?
     
     let locationManager = CLLocationManager()
     
@@ -30,13 +37,9 @@ class PTRecommendTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.googleMapView.translatesAutoresizingMaskIntoConstraints = false
-        self.googleMapView.isMyLocationEnabled = true
-        self.googleMapView.delegate = self
-        
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.register(UINib(nibName: "PTRecommendTabPlaceCell", bundle: nil), forCellWithReuseIdentifier: PTRecommendTabPlaceCell.reuseIdentifier)
+        self.initChartView()
+        self.initGoogleMapView()
+        self.initCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +55,29 @@ class PTRecommendTabViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    private func initChartView() {
+        self.chartView = JTChartView(frame: self.chartBaseView.bounds, values: [1, 10, 1, 10, 1], curve: .gray, curveWidth: 2, topGradientColor: .gray, bottomGradientColor: .gray, minY: 0.0, maxY: 0.1, topPadding: 10)
+        if let chartView = self.chartView {
+            self.chartBaseView.addSubview(chartView)
+            chartView.translatesAutoresizingMaskIntoConstraints = false
+            chartView.leadingAnchor.constraint(equalTo: self.chartBaseView.leadingAnchor).isActive = true
+            chartView.topAnchor.constraint(equalTo: self.chartBaseView.topAnchor).isActive = true
+            chartView.bottomAnchor.constraint(equalTo: self.selectRangeView.topAnchor).isActive = true
+            chartView.trailingAnchor.constraint(equalTo: self.chartBaseView.trailingAnchor).isActive = true
+        }
+    }
+    
+    private func initGoogleMapView() {
+        self.googleMapView.translatesAutoresizingMaskIntoConstraints = false
+        self.googleMapView.isMyLocationEnabled = true
+        self.googleMapView.delegate = self
+    }
+    
+    private func initCollectionView() {
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(UINib(nibName: "PTRecommendTabPlaceCell", bundle: nil), forCellWithReuseIdentifier: PTRecommendTabPlaceCell.reuseIdentifier)
+    }
     private func askAuthorization() {
         self.locationManager.delegate = self
         

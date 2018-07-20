@@ -54,7 +54,7 @@ class PTPopupViewManager: NSObject {
     
     weak var delegate: PTPopupViewShareDelegate?
     
-    static func showPopupView(_ popupView: UIView, withAnimation animated:Bool) {
+    static func showPopupView(_ popupView: PTPopupView, withAnimation animated:Bool) {
         let shared = PTPopupViewManager.shared
         
         shared.presentPopupViewControllerIfNeeded { (popupViewController) in

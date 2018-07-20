@@ -21,6 +21,12 @@ class PTPlace: PTModel {
     @objc dynamic var webUrl: String?
     @objc dynamic var phone: String?
     
+    @objc dynamic var categoryGroupCode: String = ""
+    @objc dynamic var categoryName: String = ""
+    
+    @objc dynamic var region1DepthName: String? = ""
+    @objc dynamic var region2DepthName: String? = ""
+    
     @objc dynamic var latitude: Double = 0.0 // 위도
     @objc dynamic var longitude: Double = 0.0 // 경도
     
@@ -48,10 +54,23 @@ class PTPlace: PTModel {
             place.latitude = latitue
             place.longitude = longitude
             
+            if let address = placeInfo["address_name"] as? String {
+                place.address = address
+                let divAddress = address.split(separator: " ")
+                if divAddress.count >= 2 {
+                    place.region1DepthName = String(divAddress[0])
+                    place.region2DepthName = String(divAddress[1])
+                }
+            }
+            
+            if let roadAddress = placeInfo["road_address_name"] as? String { place.roadAddress = roadAddress }
             if let placeUrl = placeInfo["place_url"] as? String { place.placeUrl = placeUrl }
             if let webUrl = placeInfo["web_url"] as? String { place.webUrl = webUrl }
             if let phone = placeInfo["phone"] as? String { place.phone = phone }
-
+            
+            if let categoryGroupCode = placeInfo["category_group_name"] as? String { place.categoryGroupCode = categoryGroupCode }
+            if let categoryName = placeInfo["category_name"] as? String { place.categoryName = categoryName }
+            
             PTPlace.save([place])
             
             return place

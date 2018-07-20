@@ -60,7 +60,7 @@ extension PTPlaceSearchViewController: UITableViewDelegate, UITableViewDataSourc
         self.searchBar.resignFirstResponder()
         
         if let place = searchResult?[indexPath.row] {
-            let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
+            let popupView = PTPlacePopupView(frame: CGRect(x: 0, y: 0, width: PTPlacePopupView.defaultSize().width, height: PTPlacePopupView.defaultSize().height))
             popupView.placeType = self.placeType
             popupView.place = place
             PTPopupViewManager.showPopupView(popupView, withAnimation: true)

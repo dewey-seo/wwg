@@ -13,11 +13,13 @@ pod 'SwiftKeychainWrapper'
 
 #assistance
 pod 'SnapKit'
+pod 'JTChartView'
 pod 'RealmSwift'
 
 #google
 pod 'GooglePlaces'
 pod 'GooglePlacePicker'
 pod 'GoogleMaps'
+pod 'Google-Mobile-Ads-SDK'
 
 end

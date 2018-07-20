@@ -52,12 +52,50 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cz2-qc-8IJ">
+                                <rect key="frame" x="0.0" y="0.0" width="191" height="188"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUV-va-Afy">
+                                        <rect key="frame" x="2" y="156" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="XbZ-5O-O7U"/>
+                                            <constraint firstAttribute="height" constant="30" id="r7S-b5-NPH"/>
+                                        </constraints>
+                                        <state key="normal" image="fav_delete"/>
+                                        <connections>
+                                            <action selector="deleteButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="us5-mp-zGK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gz2-5L-ehw">
+                                        <rect key="frame" x="159" y="156" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="bLc-EK-mWa"/>
+                                            <constraint firstAttribute="width" constant="30" id="ohJ-W6-jEn"/>
+                                        </constraints>
+                                        <state key="normal" image="fav_edit"/>
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZwJ-Vu-WFW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lUV-va-Afy" secondAttribute="bottom" constant="2" id="4Q4-Uq-gwp"/>
+                                    <constraint firstItem="lUV-va-Afy" firstAttribute="leading" secondItem="Cz2-qc-8IJ" secondAttribute="leading" constant="2" id="bjk-er-5eh"/>
+                                    <constraint firstAttribute="trailing" secondItem="gz2-5L-ehw" secondAttribute="trailing" constant="2" id="wX5-cS-4uD"/>
+                                    <constraint firstAttribute="bottom" secondItem="gz2-5L-ehw" secondAttribute="bottom" constant="2" id="wjK-fP-jOP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ajZ-oN-pA1" firstAttribute="centerX" secondItem="niJ-0C-MJj" secondAttribute="centerX" id="3Ju-ZE-EXI"/>
+                            <constraint firstAttribute="trailing" secondItem="Cz2-qc-8IJ" secondAttribute="trailing" id="JIz-Hi-Z9O"/>
+                            <constraint firstItem="Cz2-qc-8IJ" firstAttribute="top" secondItem="niJ-0C-MJj" secondAttribute="top" id="VFB-wV-A52"/>
                             <constraint firstItem="ajZ-oN-pA1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="niJ-0C-MJj" secondAttribute="leading" constant="5" id="ban-oH-bwZ"/>
+                            <constraint firstAttribute="bottom" secondItem="Cz2-qc-8IJ" secondAttribute="bottom" id="lKN-fq-seH"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ajZ-oN-pA1" secondAttribute="trailing" constant="5" id="pRI-46-d2M"/>
+                            <constraint firstItem="Cz2-qc-8IJ" firstAttribute="leading" secondItem="niJ-0C-MJj" secondAttribute="leading" id="qV8-KN-2v1"/>
                             <constraint firstItem="ajZ-oN-pA1" firstAttribute="centerY" secondItem="niJ-0C-MJj" secondAttribute="centerY" id="xnk-DD-0LC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kx3-Yf-H9G"/>
@@ -83,6 +121,7 @@
             <size key="customSize" width="191" height="188"/>
             <connections>
                 <outlet property="addView" destination="qfe-NV-jxo" id="mr0-bT-plJ"/>
+                <outlet property="editView" destination="Cz2-qc-8IJ" id="8SA-Ip-zPV"/>
                 <outlet property="emptyView" destination="yNm-vC-NVZ" id="2cu-un-y18"/>
                 <outlet property="placeLabel" destination="ajZ-oN-pA1" id="rTx-HM-VrL"/>
                 <outlet property="placeView" destination="niJ-0C-MJj" id="qWL-0u-n02"/>
@@ -92,5 +131,7 @@
     </objects>
     <resources>
         <image name="fav_add" width="512" height="512"/>
+        <image name="fav_delete" width="512" height="512"/>
+        <image name="fav_edit" width="512" height="512"/>
     </resources>
 </document>

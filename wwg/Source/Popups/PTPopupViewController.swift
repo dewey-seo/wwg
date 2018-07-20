@@ -28,8 +28,8 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    var newPopupView: UIView?
-    var currentPopupView: UIView?
+    var newPopupView: PTPopupView?
+    var currentPopupView: PTPopupView?
     
     let PTPopupAnimationBaseDuration = 0.4
     let PTPopupAnimationOverShoot: CGFloat = 10.0
@@ -45,7 +45,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     deinit {
-        print("PTPopupViewController deinit check")
+        debugPrint("PTPopupViewController deinit check")
     }
     
     func initScrollView() {
@@ -68,7 +68,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    public func showPopupView(_ popupView: UIView, animated: Bool) {
+    public func showPopupView(_ popupView: PTPopupView, animated: Bool) {
         self.newPopupView = popupView
         
         if self.currentPopupView != nil {
@@ -103,10 +103,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func prepareShowPopupView() {
-        guard let popupView = self.newPopupView else {
-            print("\(#function): popupView is nil")
-            return
-        }
+        guard let popupView = self.newPopupView else { debugPrint("\(#function): popupView is nil"); return }
         
         // init PopupView Origin
         self.view.addSubview(popupView)
@@ -114,10 +111,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func prepareHidePopupView() {
-        guard let currentPopupView = self.currentPopupView else {
-            print("\(#function): currentPopupView is nil")
-            return
-        }
+        guard let currentPopupView = self.currentPopupView else { debugPrint("\(#function): currentPopupView is nil"); return }
         
         let rect = self.scrollView.convert(currentPopupView.frame, to: self.view)
         
@@ -131,10 +125,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
     func startShowPopupAnimation(_ completion: PTPopupViewAnimationCompletionBlock?) {
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        guard let popupView = self.newPopupView else {
-            print("\(#function): newPopupView is nil")
-            return
-        }
+        guard let popupView = self.newPopupView else { debugPrint("\(#function): newPopupView is nil"); return }
         
         let initialRect = self.initialPopupViewFrameForShowAnimation(popupView)
         let finalRect = self.finalPopupViewFrameForShowAnimation(popupView)
@@ -149,10 +140,7 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
     func startHidePopupAnimation(_ completion: PTPopupViewAnimationCompletionBlock?) {
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        guard let popupView = self.currentPopupView else {
-            print("\(#function): currentPopupView is nil")
-            return
-        }
+        guard let popupView = self.currentPopupView else { debugPrint("\(#function): currentPopupView is nil"); return }
         
         let initialRect = self.initialPopupViewFrameForHideAnimation(popupView)
         let finalRect = self.finalPopupViewFrameForHideAnimation(popupView)
@@ -170,13 +158,13 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func endShowPopupAnimation(_ popupView: UIView) {
+    func endShowPopupAnimation(_ popupView: PTPopupView) {
         self.state = .showedPopup
         
         // self.view -> scrollView
         self.scrollView.addSubview(popupView)
         self.scrollView.scrollRectToVisible(self.scrollViewBottomPageFrame(), animated: false)
-        popupView.frame = self.popupViewFrameForScrollView(popupView)
+        popupView.frame = self.popupViewFrameForScrollView(popupView.frameSize())
 
         // remove Animation
         popupView.layer.removeAllAnimations()
@@ -184,12 +172,13 @@ class PTPopupViewController: UIViewController, UIGestureRecognizerDelegate {
         //
         self.currentPopupView = self.newPopupView
         self.newPopupView = nil
+        self.currentPopupView?.delegate = self
         
         // end Ignore Touch Event
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-    func endHidePopupViewAnimation(_ popupView: UIView) {
+    func endHidePopupViewAnimation(_ popupView: PTPopupView) {
         // remove from superView
         popupView.removeFromSuperview()
         popupView.layer.removeAllAnimations()
@@ -215,7 +204,7 @@ extension PTPopupViewController {
         return animation
     }
     
-    func createPopupViewZRotationAnimation(view: UIView) -> CAKeyframeAnimation {
+    func createPopupViewZRotationAnimation(view: PTPopupView) -> CAKeyframeAnimation {
         let rotationAngle = self.gestureStartTouchPositionX < self.view.frame.width * 0.5 ? 1.0 : -1.0
         
         let animation = CAKeyframeAnimation.init(keyPath: "transform.rotation.z")
@@ -232,6 +221,7 @@ extension PTPopupViewController {
         return animation
     }
     
+    
     func scrollViewBottomPageFrame() -> CGRect {
         var bottomPageFrame = self.scrollView.frame
         
@@ -242,7 +232,7 @@ extension PTPopupViewController {
         return bottomPageFrame
     }
     
-    func initialPopupViewFrameForShowAnimation(_ popupView: UIView) -> CGRect {
+    func initialPopupViewFrameForShowAnimation(_ popupView: PTPopupView) -> CGRect {
         var rect = popupView.frame
         
         rect.origin.x = (self.view.frame.width - rect.width) * 0.5
@@ -251,7 +241,7 @@ extension PTPopupViewController {
         return rect
     }
     
-    func finalPopupViewFrameForShowAnimation(_ popupView: UIView) -> CGRect {
+    func finalPopupViewFrameForShowAnimation(_ popupView: PTPopupView) -> CGRect {
         var rect = popupView.frame
         
         rect.origin.x = (self.view.frame.width - rect.width) * 0.5
@@ -260,7 +250,7 @@ extension PTPopupViewController {
         return rect
     }
     
-    func initialPopupViewFrameForHideAnimation(_ popupView: UIView) -> CGRect {
+    func initialPopupViewFrameForHideAnimation(_ popupView: PTPopupView) -> CGRect {
         if popupView.superview == self.scrollView {
             let rect = self.scrollView.convert(popupView.frame, to: self.view)
             return rect
@@ -269,7 +259,7 @@ extension PTPopupViewController {
         }
     }
 
-    func finalPopupViewFrameForHideAnimation(_ popupView: UIView) -> CGRect {
+    func finalPopupViewFrameForHideAnimation(_ popupView: PTPopupView) -> CGRect {
         var rect = popupView.frame
         
         rect.origin.x = (self.view.frame.width - rect.width) * 0.5
@@ -278,14 +268,13 @@ extension PTPopupViewController {
         return rect
     }
     
-    func popupViewFrameForScrollView(_ popupView: UIView) -> CGRect {
-        let targetRect = self.scrollViewBottomPageFrame()
-        var rect = popupView.frame
+    func popupViewFrameForScrollView(_ popupViewSize: CGSize) -> CGRect {
+        let targetViewBounds = self.scrollViewBottomPageFrame()
         
-        rect.origin.x = (targetRect.size.width - rect.width) * 0.5
-        rect.origin.y = targetRect.origin.y + (targetRect.size.height - rect.height) * 0.5
+        let originX = (targetViewBounds.size.width - popupViewSize.width) * 0.5
+        let originY = targetViewBounds.origin.y + (targetViewBounds.size.height - popupViewSize.height) * 0.5
         
-        return rect
+        return CGRect(x: originX, y: originY, width: popupViewSize.width, height: popupViewSize.height)
     }
     
     func popupViewRotationAngle() -> CGFloat {
@@ -321,9 +310,6 @@ extension PTPopupViewController {
 
 extension PTPopupViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if let currentPopupView = self.currentPopupView {
-            currentPopupView.layer.shouldRasterize = true
-        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -360,3 +346,29 @@ extension PTPopupViewController: UIScrollViewDelegate {
         }
     }
 }
+
+extension PTPopupViewController: PTPopupViewDelegate {
+    func popupViewNeedChangeSize(_ size: CGSize) {
+        guard let currentPopupView = self.currentPopupView else { debugPrint("\(#function): currentPopupView is nil"); return }
+        
+        let targetFrame = self.popupViewFrameForScrollView(size)
+        
+        UIViewPropertyAnimator(duration: PTPopupAnimationBaseDuration, curve: .easeInOut) {
+            currentPopupView.frame = targetFrame
+        }.startAnimation()
+    }
+    
+    func popupViewPresentViewController(_ vc: UIViewController, completion: (() -> Void)?) {
+        self.present(vc, animated: true) {
+            completion?()
+        }
+    }
+}
+
+
+
+
+
+
+
+

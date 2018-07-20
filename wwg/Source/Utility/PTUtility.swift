@@ -15,4 +15,7 @@ extension UIView {
     func frameHeight() -> CGFloat {
         return self.frame.size.height
     }
+    func frameSize() -> CGSize {
+        return self.frame.size
+    }
 }

@@ -116,8 +116,12 @@ extension PTMainTabViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PTMainTabCollectionHeaderView.reuseIdentifier, for: indexPath)
+            if let reusableHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PTMainTabCollectionHeaderView.reuseIdentifier, for: indexPath) as? PTMainTabCollectionHeaderView {
+                reusableHeaderView.bannerView.rootViewController = self
+                return reusableHeaderView
+            }
         }
+        
         return UICollectionReusableView()
     }
     
@@ -129,6 +133,7 @@ extension PTMainTabViewController: UICollectionViewDelegate, UICollectionViewDat
         if case cell.type = PTMainTabCollectionViewCellType.place {
             cell.place = items?[indexPath.row]
             cell.isEditMode = self.isEditMode
+            cell.delegate = self
         }
         
         return cell
@@ -220,6 +225,7 @@ extension PTMainTabViewController {
     
     private func changeEditMode(_ newMode: Bool) {
         _isEditMode = newMode
+        self.setNavigationBarButton(isEditMode: self.isEditMode)
         
         if self.isEditMode == true {
             self.longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleCollectionViewLongPressed(gesture:)))
@@ -258,6 +264,42 @@ extension PTMainTabViewController {
     }
 }
 
+extension PTMainTabViewController: PTMainTabCollectionViewCellDelegate {
+    func edit(cell: PTMainTabCollectionViewCell) {
+        if let editIndex = self.collectionView.indexPath(for: cell)?.row, let items = self.items {
+            let place = items[editIndex]
+            
+            let alert = UIAlertController(title: place.name, message: "", preferredStyle: .alert)
+            alert.addTextField { (textField) in
+            }
+            
+            let editButton = UIAlertAction(title: "Edit", style: .default) { (ok) in
+                PTDBManager.write {
+                    if let text = alert.textFields?[0].text {
+                        if text.count > 0 {
+                            place.name = text
+                        }
+                    }
+                }
+            }
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(cancelButton)
+            alert.addAction(editButton)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+
+    }
+    
+    func delete(cell: PTMainTabCollectionViewCell) {
+        if let deleteIndex = self.collectionView.indexPath(for: cell)?.row, let currentUser = PTUserManager.currentUser() {
+            PTDBManager.write {
+                currentUser.significantPlaces.remove(at: deleteIndex)
+            }
+        }
+    }
+}
 
 
 

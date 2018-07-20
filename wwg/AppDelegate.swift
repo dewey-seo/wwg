@@ -10,8 +10,10 @@ import UIKit
 import CoreData
 import GoogleMaps
 import GooglePlaces
+import GoogleMobileAds
 
 let GOOGLE_API_KEY = "AIzaSyCROCajPeG43OjPpFu5w936kNZuRtIXFc4"
+let GOOGLE_ADMOB_APP_ID = "ca-app-pub-3918803652819009~5077997679"
 let KAKAO_SECRET_KEY = "zQMMc5TQIVPNuVgY2ycHQyvjTiU0VmaG"
 
 @UIApplicationMain
@@ -25,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
         
-        // 
+        // Managing DB
         PTDBManager.shared.deleteOrphanedModels()
         
         // Network Start
@@ -33,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Google Places API
         self.didFinishLaunchingWithOptionForGoogle()
+        
+        // Goole Admob API
+        self.didFindishLaunchingWithOptionForAdmob()
         
         // Kakao
         self.didFinishLaunchingWithOptionForKakao()
@@ -136,5 +141,8 @@ extension AppDelegate {
     func didFinishLaunchingWithOptionForGoogle() {
         GMSServices.provideAPIKey(GOOGLE_API_KEY)
         GMSPlacesClient.provideAPIKey(GOOGLE_API_KEY)
+    }
+    func didFindishLaunchingWithOptionForAdmob() {
+        GADMobileAds.configure(withApplicationID: "YOUR_ADMOB_APP_ID")
     }
 }
