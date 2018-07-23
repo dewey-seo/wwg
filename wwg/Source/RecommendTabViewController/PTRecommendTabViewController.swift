@@ -15,14 +15,24 @@ import JTChartView
 
 class PTRecommendTabViewController: UIViewController {
 
-    @IBOutlet weak var googleMapView: GMSMapView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var bottomViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var baseView: UIView!
+    @IBOutlet weak var baseViewTop: NSLayoutConstraint!
+    @IBOutlet weak var baseViewBottom: NSLayoutConstraint!
     
+    // top
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var chartBaseView: UIView!
-    @IBOutlet weak var selectRangeView: PTRangeSlider!
+    @IBOutlet weak var distanceRangeSlider: PTRangeSlider!
+    @IBOutlet weak var topviewHeight: NSLayoutConstraint!
+    
+    // map
+    @IBOutlet weak var googleMapView: GMSMapView!
+    
+    // bottom
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
+    
     
     var chartView: JTChartView?
     
@@ -30,6 +40,7 @@ class PTRecommendTabViewController: UIViewController {
     
     var items = List<PTPlace>()
     var sortedItems = [PTPlace]()
+    var groupItems = [[PTPlace]]()
     var notificationToken: NotificationToken?
     
     var marker: GMSMarker?
@@ -40,6 +51,10 @@ class PTRecommendTabViewController: UIViewController {
         self.initChartView()
         self.initGoogleMapView()
         self.initCollectionView()
+        
+        self.baseViewBottom.constant = self.tabBarController?.tabBar.frameHeight() ?? 0
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,18 +70,6 @@ class PTRecommendTabViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    private func initChartView() {
-        self.chartView = JTChartView(frame: self.chartBaseView.bounds, values: [1, 10, 1, 10, 1], curve: .gray, curveWidth: 2, topGradientColor: .gray, bottomGradientColor: .gray, minY: 0.0, maxY: 0.1, topPadding: 10)
-        if let chartView = self.chartView {
-            self.chartBaseView.addSubview(chartView)
-            chartView.translatesAutoresizingMaskIntoConstraints = false
-            chartView.leadingAnchor.constraint(equalTo: self.chartBaseView.leadingAnchor).isActive = true
-            chartView.topAnchor.constraint(equalTo: self.chartBaseView.topAnchor).isActive = true
-            chartView.bottomAnchor.constraint(equalTo: self.selectRangeView.topAnchor).isActive = true
-            chartView.trailingAnchor.constraint(equalTo: self.chartBaseView.trailingAnchor).isActive = true
-        }
-    }
-    
     private func initGoogleMapView() {
         self.googleMapView.translatesAutoresizingMaskIntoConstraints = false
         self.googleMapView.isMyLocationEnabled = true
@@ -78,6 +81,7 @@ class PTRecommendTabViewController: UIViewController {
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "PTRecommendTabPlaceCell", bundle: nil), forCellWithReuseIdentifier: PTRecommendTabPlaceCell.reuseIdentifier)
     }
+    
     private func askAuthorization() {
         self.locationManager.delegate = self
         
@@ -125,6 +129,7 @@ class PTRecommendTabViewController: UIViewController {
             return placeA.distance! < placeB.distance!
         })
         
+        self.showTopViewIfNeeded()
         self.collectionView.reloadData()
     }
     
@@ -211,5 +216,73 @@ extension PTRecommendTabViewController: GMSMapViewDelegate {
     }
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         
+    }
+}
+
+// MARK: - Chart
+extension PTRecommendTabViewController {
+    private func initChartView() {
+        self.baseViewTop.constant = -self.topviewHeight.constant
+    }
+    
+    private func showTopViewIfNeeded() {
+        if self.sortedItems.count > 10 {
+            if self.sortedItems.count > 0 {
+                if #available(iOS 11, *) {
+                    self.baseViewTop.constant = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+                } else {
+                    self.baseViewTop.constant = 0
+                }
+            }
+            
+            self.makePlaceGroupBasedDistance()
+            
+            let (values, minY, maxY) = self.makeCharValuesUsingGroupItems()
+            self.chartView = JTChartView(frame: self.chartBaseView.bounds, values: values, curve: .gray, curveWidth: 2, topGradientColor: .gray, bottomGradientColor: .gray, minY: CGFloat(minY), maxY: CGFloat(maxY), topPadding: 10)
+            if let chartView = self.chartView {
+                self.chartBaseView.addSubview(chartView)
+                chartView.translatesAutoresizingMaskIntoConstraints = false
+                chartView.leadingAnchor.constraint(equalTo: self.chartBaseView.leadingAnchor).isActive = true
+                chartView.topAnchor.constraint(equalTo: self.chartBaseView.topAnchor).isActive = true
+                chartView.bottomAnchor.constraint(equalTo: self.distanceRangeSlider.topAnchor).isActive = true
+                chartView.trailingAnchor.constraint(equalTo: self.chartBaseView.trailingAnchor).isActive = true
+            }
+        }
+    }
+    
+    private func makePlaceGroupBasedDistance() {
+        let divKm = 5
+        guard let maxDistance = self.sortedItems.last?.distance else {return}
+        guard let minDistance = self.sortedItems.first?.distance else {return}
+        
+        self.groupItems.removeAll()
+        
+        for place in self.sortedItems {
+            if let distance = place.distance {
+                let km = (Int)((distance - minDistance) * 0.001)
+                let groupIndex: Int = km % divKm
+                
+                if self.groupItems.indices.contains(groupIndex) {
+                    self.groupItems[groupIndex].append(place)
+                } else {
+                    self.groupItems.append([place])
+                }
+            }
+        }
+    }
+    
+    private func makeCharValuesUsingGroupItems() -> ([Any], Int, Int) {
+        
+        var values = [Any]()
+        var maxCount = 0
+        var minCount = self.groupItems[0].count
+        
+        for places:[PTPlace] in self.groupItems {
+            values.append(places.count)
+            maxCount = max(maxCount, places.count)
+            minCount = min(minCount, places.count)
+        }
+        
+        return (values, minCount, maxCount)
     }
 }

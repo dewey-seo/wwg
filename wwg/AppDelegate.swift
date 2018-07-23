@@ -12,7 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import GoogleMobileAds
 
-let GOOGLE_API_KEY = "AIzaSyCROCajPeG43OjPpFu5w936kNZuRtIXFc4"
+let GOOGLE_SDK_API_KEY = "AIzaSyDwHHwIDUlDOCNvMIf65HrgJ0EitcuedY0"
 let GOOGLE_ADMOB_APP_ID = "ca-app-pub-3918803652819009~5077997679"
 let KAKAO_SECRET_KEY = "zQMMc5TQIVPNuVgY2ycHQyvjTiU0VmaG"
 
@@ -139,10 +139,10 @@ extension AppDelegate {
         KOSession.shared().isAutomaticPeriodicRefresh = true
     }
     func didFinishLaunchingWithOptionForGoogle() {
-        GMSServices.provideAPIKey(GOOGLE_API_KEY)
-        GMSPlacesClient.provideAPIKey(GOOGLE_API_KEY)
+        GMSServices.provideAPIKey(GOOGLE_SDK_API_KEY)
+        GMSPlacesClient.provideAPIKey(GOOGLE_SDK_API_KEY)
     }
     func didFindishLaunchingWithOptionForAdmob() {
-        GADMobileAds.configure(withApplicationID: "YOUR_ADMOB_APP_ID")
+        GADMobileAds.configure(withApplicationID: GOOGLE_ADMOB_APP_ID)
     }
 }

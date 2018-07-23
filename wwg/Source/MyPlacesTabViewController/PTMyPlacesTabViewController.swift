@@ -11,6 +11,9 @@ import RealmSwift
 
 class PTMyPlacesTabViewController: UIViewController {
     
+    // TODO : Group / Location Group / Created / Distance Sort.
+    // TODO : Search Empty / typing auto search
+    
     @IBOutlet weak var tableView: UITableView!
     
     var searchController : UISearchController!
@@ -124,6 +127,20 @@ extension PTMyPlacesTabViewController: UITableViewDelegate, UITableViewDataSourc
         cell?.textLabel?.text = place.name
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return !self.onSearching()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let place = self.items()[indexPath.row]
+            if let currentUser = PTUserManager.currentUser() {
+                currentUser.removePlace(type: .favorite, place: place, syncWithServer: false) {
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

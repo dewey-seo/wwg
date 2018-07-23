@@ -46,4 +46,12 @@ class PTPlaceSearchHelper: NSObject {
             }
         }
     }
+    
+    func googleSearch(place: PTPlace) {
+        PTApiRequest.request().getGoogleInfo(place: place).observeCompletion { (response) in
+            if response.isSuccess == true {
+                print(response)
+            }
+        }
+    }
 }

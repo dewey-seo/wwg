@@ -98,9 +98,9 @@ extension PTApiRequest {
         self.addParameter(key: "location", value: "\(place.latitude),\(place.longitude)")
         self.addParameter(key: "radius", value: "20")
         self.addParameter(key: "keyword", value: place.name)
-        self.addParameter(key: "key", value: GOOGLE_API_KEY)
+        self.addParameter(key: "key", value: GOOGLE_SDK_API_KEY)
         
-        self.deliver(method: .get)
+//        self.deliver(method: .get)
         
         return self
     }
