@@ -69,7 +69,6 @@ class PTDBManager: NSObject {
         }
     }
     
-    
     func delete<Element: Object>(type: Element.Type, objects: [PTModel]){
         let ids = objects.map { $0.id }
         let results = realm.objects(type).filter("id IN %@", ids)

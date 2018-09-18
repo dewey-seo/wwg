@@ -13,7 +13,6 @@ pod 'SwiftKeychainWrapper'
 
 #assistance
 pod 'SnapKit'
-pod 'JTChartView'
 pod 'RealmSwift'
 
 #google

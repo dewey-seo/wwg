@@ -77,6 +77,8 @@
 		58940A5420F727BE0006F9DA /* PTMainTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58940A5220F727BE0006F9DA /* PTMainTabCollectionViewCell.swift */; };
 		58940A5520F727BE0006F9DA /* PTMainTabCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5320F727BE0006F9DA /* PTMainTabCollectionViewCell.xib */; };
 		58940A5920F736580006F9DA /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58940A5820F736580006F9DA /* icons.xcassets */; };
+		58B884E1212E4D19000C0348 /* PTPlaceSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B884DF212E4D19000C0348 /* PTPlaceSaveViewController.swift */; };
+		58B884E2212E4D19000C0348 /* PTPlaceSaveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58B884E0212E4D19000C0348 /* PTPlaceSaveViewController.xib */; };
 		93C848BCDBF49AB695714168 /* Pods_wwg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +157,8 @@
 		58940A5220F727BE0006F9DA /* PTMainTabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTMainTabCollectionViewCell.swift; sourceTree = "<group>"; };
 		58940A5320F727BE0006F9DA /* PTMainTabCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTMainTabCollectionViewCell.xib; sourceTree = "<group>"; };
 		58940A5820F736580006F9DA /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
+		58B884DF212E4D19000C0348 /* PTPlaceSaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTPlaceSaveViewController.swift; sourceTree = "<group>"; };
+		58B884E0212E4D19000C0348 /* PTPlaceSaveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTPlaceSaveViewController.xib; sourceTree = "<group>"; };
 		5F88835DA371B13EC3C4E40C /* Pods_wwg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wwg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4D8100739B686C8E34D390 /* Pods-wwg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wwg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wwg/Pods-wwg.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,6 +370,8 @@
 				586CAF1C20FC74FD000166B1 /* PTPlaceSearchViewController.xib */,
 				586CAF3520FDED41000166B1 /* PTPlaceInfoWebViewController.swift */,
 				586CAF3620FDED41000166B1 /* PTPlaceInfoWebViewController.xib */,
+				58B884DF212E4D19000C0348 /* PTPlaceSaveViewController.swift */,
+				58B884E0212E4D19000C0348 /* PTPlaceSaveViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58940A5520F727BE0006F9DA /* PTMainTabCollectionViewCell.xib in Resources */,
+				58B884E2212E4D19000C0348 /* PTPlaceSaveViewController.xib in Resources */,
 				5828B82920F4AB7B005A736E /* PTLoginViewController.xib in Resources */,
 				586CAF3220FDAD82000166B1 /* PTMyPlacesTabViewController.xib in Resources */,
 				5828B81320F4AB71005A736E /* PTMainTabViewController.xib in Resources */,
@@ -545,7 +552,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-wwg/Pods-wwg-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/JTChartView/JTChartView.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -556,7 +562,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTChartView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -576,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5828B82620F4AB7B005A736E /* PTSharingTabBarController.swift in Sources */,
+				58B884E1212E4D19000C0348 /* PTPlaceSaveViewController.swift in Sources */,
 				586CAF3420FDB941000166B1 /* PTPlaceSearchHelper.swift in Sources */,
 				5828B7FC20F4AB71005A736E /* PTAnimation.swift in Sources */,
 				5865439E20FF01AF00804036 /* PTPopupView.swift in Sources */,

@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import RealmSwift
 import MapKit
-import JTChartView
+
 
 class PTRecommendTabViewController: UIViewController {
 
@@ -19,28 +19,22 @@ class PTRecommendTabViewController: UIViewController {
     @IBOutlet weak var baseViewTop: NSLayoutConstraint!
     @IBOutlet weak var baseViewBottom: NSLayoutConstraint!
     
-    // top
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var chartBaseView: UIView!
-    @IBOutlet weak var distanceRangeSlider: PTRangeSlider!
-    @IBOutlet weak var topviewHeight: NSLayoutConstraint!
-    
     // map
     @IBOutlet weak var googleMapView: GMSMapView!
     
     // bottom
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
-    
-    
-    var chartView: JTChartView?
-    
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+
     let locationManager = CLLocationManager()
+    
+    var currentIndex = 0
+    var targetIndex = 0
     
     var items = List<PTPlace>()
     var sortedItems = [PTPlace]()
-    var groupItems = [[PTPlace]]()
     var notificationToken: NotificationToken?
     
     var marker: GMSMarker?
@@ -48,13 +42,10 @@ class PTRecommendTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initChartView()
         self.initGoogleMapView()
         self.initCollectionView()
         
         self.baseViewBottom.constant = self.tabBarController?.tabBar.frameHeight() ?? 0
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +120,6 @@ class PTRecommendTabViewController: UIViewController {
             return placeA.distance! < placeB.distance!
         })
         
-        self.showTopViewIfNeeded()
         self.collectionView.reloadData()
     }
     
@@ -152,8 +142,24 @@ extension PTRecommendTabViewController: CLLocationManagerDelegate {
 }
 
 extension PTRecommendTabViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func cellSize() -> CGSize {
+        return CGSize(width: ceil(self.collectionView.frameWidth() - 30*2), height: self.collectionView.frameHeight() - 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frameWidth() * 0.65, height: self.collectionView.frameHeight())
+        return self.cellSize()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -196,7 +202,7 @@ extension PTRecommendTabViewController: UICollectionViewDelegate, UICollectionVi
             let centerLocation = MKCoordinateForMapPoint(centerPoint);
             
             let mapScaleWidth = Double(self.googleMapView.frame.size.width) / fabs(targetLoc.x - myLoc.x);
-            let mapScaleHeight = Double(self.googleMapView.frame.size.height) / fabs(targetLoc.y - myLoc.y);
+            let mapScaleHeight = Double(self.googleMapView.frame.size.height - self.bottomViewHeight.constant) / fabs(targetLoc.y - myLoc.y);
             let mapScale = min(mapScaleWidth, mapScaleHeight);
             
             let zoomLevel = (20 + log2(mapScale)) * 0.97;
@@ -209,80 +215,53 @@ extension PTRecommendTabViewController: UICollectionViewDelegate, UICollectionVi
     }
 }
 
-
+extension PTRecommendTabViewController: UIScrollViewDelegate {
+    func pointToIndex(scrollView: UIScrollView, point: CGPoint) -> Int {
+        let centerPoint = CGPoint(x: point.x + scrollView.frameWidth()*0.5, y: point.y)
+        let index = self.collectionView.indexPathForItem(at: centerPoint)?.item ?? currentIndex
+        
+        return index
+    }
+    
+    func indexToPoint(scrollView: UIScrollView, index: Int) -> CGPoint {
+        let index = min(max(0, index), (self.collectionView.numberOfItems(inSection: 0) - 1))
+        
+        if index == 0 {
+            return CGPoint(x: 0, y: 0)
+        } else if index == (self.collectionView.numberOfItems(inSection: 0) - 1) {
+            return CGPoint(x: scrollView.contentSize.width - scrollView.frameWidth(), y: 0)
+        } else {
+            return CGPoint(x: CGFloat(index) * (self.cellSize().width + 10.0) - 20, y: 0)
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        currentIndex = self.pointToIndex(scrollView: scrollView, point: scrollView.contentOffset)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print(#function)
+        targetIndex = currentIndex
+        
+        if scrollView.contentOffset.x < targetContentOffset.pointee.x {
+            if self.pointToIndex(scrollView: scrollView, point:targetContentOffset.pointee) != currentIndex {
+                targetIndex = currentIndex + 1
+            }
+        } else if scrollView.contentOffset.x > targetContentOffset.pointee.x {
+            if self.pointToIndex(scrollView: scrollView, point:targetContentOffset.pointee) != currentIndex {
+                targetIndex = currentIndex - 1
+            }
+        }
+        
+        targetContentOffset.pointee.x = self.indexToPoint(scrollView: scrollView, index: targetIndex).x
+    }
+}
 
 extension PTRecommendTabViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
     }
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        
     }
 }
 
-// MARK: - Chart
-extension PTRecommendTabViewController {
-    private func initChartView() {
-        self.baseViewTop.constant = -self.topviewHeight.constant
-    }
-    
-    private func showTopViewIfNeeded() {
-        if self.sortedItems.count > 10 {
-            if self.sortedItems.count > 0 {
-                if #available(iOS 11, *) {
-                    self.baseViewTop.constant = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
-                } else {
-                    self.baseViewTop.constant = 0
-                }
-            }
-            
-            self.makePlaceGroupBasedDistance()
-            
-            let (values, minY, maxY) = self.makeCharValuesUsingGroupItems()
-            self.chartView = JTChartView(frame: self.chartBaseView.bounds, values: values, curve: .gray, curveWidth: 2, topGradientColor: .gray, bottomGradientColor: .gray, minY: CGFloat(minY), maxY: CGFloat(maxY), topPadding: 10)
-            if let chartView = self.chartView {
-                self.chartBaseView.addSubview(chartView)
-                chartView.translatesAutoresizingMaskIntoConstraints = false
-                chartView.leadingAnchor.constraint(equalTo: self.chartBaseView.leadingAnchor).isActive = true
-                chartView.topAnchor.constraint(equalTo: self.chartBaseView.topAnchor).isActive = true
-                chartView.bottomAnchor.constraint(equalTo: self.distanceRangeSlider.topAnchor).isActive = true
-                chartView.trailingAnchor.constraint(equalTo: self.chartBaseView.trailingAnchor).isActive = true
-            }
-        }
-    }
-    
-    private func makePlaceGroupBasedDistance() {
-        let divKm = 5
-        guard let maxDistance = self.sortedItems.last?.distance else {return}
-        guard let minDistance = self.sortedItems.first?.distance else {return}
-        
-        self.groupItems.removeAll()
-        
-        for place in self.sortedItems {
-            if let distance = place.distance {
-                let km = (Int)((distance - minDistance) * 0.001)
-                let groupIndex: Int = km % divKm
-                
-                if self.groupItems.indices.contains(groupIndex) {
-                    self.groupItems[groupIndex].append(place)
-                } else {
-                    self.groupItems.append([place])
-                }
-            }
-        }
-    }
-    
-    private func makeCharValuesUsingGroupItems() -> ([Any], Int, Int) {
-        
-        var values = [Any]()
-        var maxCount = 0
-        var minCount = self.groupItems[0].count
-        
-        for places:[PTPlace] in self.groupItems {
-            values.append(places.count)
-            maxCount = max(maxCount, places.count)
-            minCount = min(minCount, places.count)
-        }
-        
-        return (values, minCount, maxCount)
-    }
-}
+
